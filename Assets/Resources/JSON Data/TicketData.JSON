@@ -1,0 +1,23 @@
+{
+    "tickets":
+    [
+        {
+            "title": "Cannot connect to wifi",
+            "description": "Pls help, cannot connect to wifi after getting new laptop",
+            "task": "Re-enroll device",
+            "classification": "IT Issue"
+        },
+        {
+            "title": "Cannot print",
+            "description": "Cannot find office printer",
+            "task": "Manually map printer",
+            "classification": "IT Issue"
+        },
+        {
+            "title": "Apply for ABC License",
+            "description": "For daily work",
+            "task": "Apply License",
+            "classification": "IT Service"
+        }
+    ]
+}

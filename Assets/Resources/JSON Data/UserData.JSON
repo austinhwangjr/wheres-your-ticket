@@ -1,0 +1,17 @@
+{
+    "users:": 
+    [
+        {
+            "name": "Austin Hwang",
+            "is_VIP": true
+        },
+        {
+            "name": "John Tan",
+            "is_VIP": false
+        },
+        {
+            "name": "Nelson Tan",
+            "is_VIP": false
+        }
+    ]
+}
