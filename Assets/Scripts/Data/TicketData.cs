@@ -18,7 +18,7 @@ public class TicketData
 }
 
 [System.Serializable]
-public class TicketList
+public class TicketDataList
 {
     public TicketData[] tickets;
 }
