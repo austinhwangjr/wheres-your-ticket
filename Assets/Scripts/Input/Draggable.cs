@@ -3,17 +3,34 @@ using UnityEngine.InputSystem;
 
 public class Draggable : MonoBehaviour
 {
+    private PlayerInput player_input;
     private bool dragging = false;
     private Vector3 offset;
 
+    private void Awake()
+    {
+        player_input = new PlayerInput();
+    }
+
+    private void OnEnable()
+    {
+        player_input.Gameplay.Enable();
+    }
+
+    private void OnDisable()
+    {
+        player_input.Gameplay.Disable();
+    }
+
     void Update()
     {
-        if (Mouse.current == null) return; // Ensure a mouse is connected
+        if (Mouse.current == null)
+            return;
 
         Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        mouseWorldPos.z = transform.position.z; // Keep original Z (for 3D compatibility)
+        mouseWorldPos.z = transform.position.z;
 
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (player_input.Gameplay.LeftMouse.triggered)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
             if (hit.collider != null && hit.transform == transform)
@@ -23,7 +40,7 @@ public class Draggable : MonoBehaviour
             }
         }
 
-        if (Mouse.current.leftButton.wasReleasedThisFrame)
+        if (player_input.Gameplay.LeftMouse.WasReleasedThisFrame())
         {
             dragging = false;
         }
@@ -33,23 +50,4 @@ public class Draggable : MonoBehaviour
             transform.position = mouseWorldPos + offset;
         }
     }
-
-    // void Update()
-    // {
-    //     if (dragging)
-    //     {
-    //         transform.position = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
-    //     }
-    // }
-
-    // private void OnMouseDown()
-    // {
-    //     dragging = true;
-    //     offset = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-    // }
-
-    // private void OnMouseUp()
-    // {
-    //     dragging = false;
-    // }
 }
