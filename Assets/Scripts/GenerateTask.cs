@@ -34,19 +34,19 @@ public class GenerateTask : MonoBehaviour, IPointerClickHandler
     // Update is called once per frame
     void Update()
     {
-        if (player_input.Gameplay.LeftMouse.triggered)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
-            if (hit.collider != null && hit.transform == transform)
-            {
-                CreateNewTask();
-            }
-        }
+        // if (player_input.Gameplay.LeftMouse.triggered)
+        // {
+        //     RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
+        //     if (hit.collider != null && hit.transform == transform)
+        //     {
+        //         CreateNewTask();
+        //     }
+        // }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        //CreateNewTask();
+        CreateNewTask();
     }
 
     private void OnDestroy()
@@ -58,13 +58,33 @@ public class GenerateTask : MonoBehaviour, IPointerClickHandler
     {
         Ticket ticket = Ticket.GenerateRandomTicket();
 
-        task_textmeshpro.GetComponent<TextMeshPro>().SetText(
-            $"Ticket:\n" +
-            $"Title: {ticket.title}\n" +
-            $"Classification: {ticket.classification}\n" +
-            $"Created By: {ticket.created_by}\n" +
-            $"Priority: {ticket.priority}\n"
-        );
+        if (task_textmeshpro.GetComponent<TextMeshPro>() != null)
+        {
+            task_textmeshpro.GetComponent<TextMeshPro>().SetText(
+                $"Ticket:\n" +
+                $"Title: {ticket.title}\n" +
+                $"Classification: {ticket.classification}\n" +
+                $"Created By: {ticket.created_by}\n" +
+                $"Priority: {ticket.priority}\n"
+            );
+        }
+        else if (task_textmeshpro.GetComponent<TextMeshProUGUI>())
+        {
+            task_textmeshpro.GetComponent<TextMeshProUGUI>().SetText(
+                $"Ticket:\n" +
+                $"Title: {ticket.title}\n" +
+                $"Classification: {ticket.classification}\n" +
+                $"Created By: {ticket.created_by}\n" +
+                $"Priority: {ticket.priority}\n"
+            );
+        }
+        // task_textmeshpro.GetComponent<TextMeshPro>().SetText(
+        //     $"Ticket:\n" +
+        //     $"Title: {ticket.title}\n" +
+        //     $"Classification: {ticket.classification}\n" +
+        //     $"Created By: {ticket.created_by}\n" +
+        //     $"Priority: {ticket.priority}\n"
+        // );
 
         Debug.Log("GENERATE TASK");
     }
