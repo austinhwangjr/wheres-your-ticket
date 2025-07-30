@@ -18,18 +18,22 @@ public class EventDrag : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        position_offset = transform.position - Camera.main.ScreenToWorldPoint(eventData.position);
+        //position_offset = transform.position - Camera.main.ScreenToWorldPoint(eventData.position);
+        position_offset = transform.position - (Vector3)eventData.position;
         //position_offset.z = 0;
         //Debug.Log("Position offset: " + position_offset);
+        Debug.Log("Begin drag");
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        Debug.Log("Drag");
         // Store object's z-value (since position is Vector2)
         float z = transform.position.z;
 
         //Vector3 newPos = Camera.main.ScreenToWorldPoint(eventData.position) + camera_offset + position_offset;
-        Vector3 newPos = Camera.main.ScreenToWorldPoint(eventData.position) + position_offset;
+        //Vector3 newPos = Camera.main.ScreenToWorldPoint(eventData.position) + position_offset;
+        Vector3 newPos = (Vector3)eventData.position + position_offset;
         newPos.z = z;
 
         transform.position = newPos;
