@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using TMPro;
 
-public class GenerateTask : MonoBehaviour, IPointerClickHandler
+public class GenerateTicket : MonoBehaviour, IPointerClickHandler
 {
-    public GameObject task_textmeshpro;
+    public GameObject ticket_textmeshpro;
 
     private PlayerInput player_input;
 
@@ -28,7 +27,7 @@ public class GenerateTask : MonoBehaviour, IPointerClickHandler
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //button.onClick.AddListener(GenerateTask);
+        //button.onClick.AddListener(GenerateTicket);
     }
 
     // Update is called once per frame
@@ -39,26 +38,26 @@ public class GenerateTask : MonoBehaviour, IPointerClickHandler
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
             if (hit.collider != null && hit.transform == transform)
             {
-                CreateNewTask();
+                CreateNewTicket();
             }
         }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        //CreateNewTask();
+        //CreateNewTicket();
     }
 
     private void OnDestroy()
     {
-        //button.onClick.RemoveListener(GenerateTask);
+        //button.onClick.RemoveListener(GenerateTicket);
     }
 
-    private void CreateNewTask()
+    private void CreateNewTicket()
     {
         Ticket ticket = Ticket.GenerateRandomTicket();
 
-        task_textmeshpro.GetComponent<TextMeshPro>().SetText(
+        ticket_textmeshpro.GetComponent<TextMeshPro>().SetText(
             $"Ticket:\n" +
             $"Title: {ticket.title}\n" +
             $"Classification: {ticket.classification}\n" +
@@ -66,6 +65,6 @@ public class GenerateTask : MonoBehaviour, IPointerClickHandler
             $"Priority: {ticket.priority}\n"
         );
 
-        Debug.Log("GENERATE TASK");
+        Debug.Log("GENERATE TICKET");
     }
 }

@@ -6,6 +6,7 @@ public class HoverText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 {
     //TextMeshPro textmeshpro;
     public SpriteRenderer bg_sprite_renderer;
+    public TextMeshPro text_tmp;
     public Color initial_bg_color;
     public Color hover_bg_color;
     public Color initial_text_color;
@@ -14,7 +15,7 @@ public class HoverText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerEnter(PointerEventData eventData)
     {
         bg_sprite_renderer.color = hover_bg_color;
-        GetComponent<TextMeshPro>().color = hover_text_color;
+        text_tmp.color = hover_text_color;
         //GetComponent<TextMeshPro>().color = Color.cyan;
         //GetComponent<TextMeshPro>().fontStyle = FontStyles.Underline;
     }
@@ -22,7 +23,7 @@ public class HoverText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerExit(PointerEventData eventData)
     {
         bg_sprite_renderer.color = initial_bg_color;
-        GetComponent<TextMeshPro>().color = initial_text_color;
+        text_tmp.color = initial_text_color;
         //GetComponent<TextMeshPro>().color = Color.black;
         //GetComponent<TextMeshPro>().fontStyle = FontStyles.Normal;
     }
