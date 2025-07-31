@@ -612,8 +612,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53715aa42824e417cbc48e282d8db14f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 105167604}
-  destination: {fileID: 1256669035}
+  source: {fileID: 0}
+  destination: {fileID: 0}
   tickets_list: {fileID: 0}
 --- !u!114 &140373860
 MonoBehaviour:
@@ -1203,6 +1203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ticket_textmeshpro: {fileID: 1972039832}
+  generated_ticket_box: {fileID: 1909408979}
 --- !u!1 &432876613
 GameObject:
   m_ObjectHideFlags: 0
@@ -2042,6 +2043,7 @@ GameObject:
   - component: {fileID: 1073887069}
   - component: {fileID: 1073887072}
   - component: {fileID: 1073887073}
+  - component: {fileID: 1073887074}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -2135,6 +2137,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 432876613}
+--- !u!114 &1073887074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1073887068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf44dac30ae74518be7aedc6c7d8ebb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  home_page: {fileID: 105167604}
+  ticket_information_page: {fileID: 1256669035}
+  selected_ticket_box: {fileID: 1365083607}
+  tickets_list: {fileID: 1909408979}
 --- !u!1 &1094818253
 GameObject:
   m_ObjectHideFlags: 0
@@ -2991,6 +3009,8 @@ GameObject:
   - component: {fileID: 1365083608}
   - component: {fileID: 1365083610}
   - component: {fileID: 1365083609}
+  - component: {fileID: 1365083612}
+  - component: {fileID: 1365083611}
   m_Layer: 0
   m_Name: Ticket Box (Scene)
   m_TagString: Untagged
@@ -3115,6 +3135,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1365083611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365083607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5acf408060c8e484cb41e57608ba3ddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ticket_textmeshpro: {fileID: 1143925074}
+--- !u!114 &1365083612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365083607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a74f1548344464299ae0d3330e93791f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1402614789
 GameObject:
   m_ObjectHideFlags: 0
@@ -3417,6 +3462,8 @@ GameObject:
   - component: {fileID: 1909408983}
   - component: {fileID: 1909408982}
   - component: {fileID: 1909408981}
+  - component: {fileID: 1909408986}
+  - component: {fileID: 1909408985}
   m_Layer: 0
   m_Name: Ticket Box (Canvas)
   m_TagString: Untagged
@@ -3447,14 +3494,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909408979}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53715aa42824e417cbc48e282d8db14f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 105167604}
-  destination: {fileID: 1256669035}
-  tickets_list: {fileID: 1909408979}
+  source: {fileID: 0}
+  destination: {fileID: 0}
+  tickets_list: {fileID: 0}
 --- !u!114 &1909408982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3574,6 +3621,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1909408985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909408979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a74f1548344464299ae0d3330e93791f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1909408986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909408979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2bc5b7a3d0004049b2da6c565e3ca20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event_system: {fileID: 1073887068}
 --- !u!1 &1960235373
 GameObject:
   m_ObjectHideFlags: 0
@@ -4800,6 +4872,7 @@ GameObject:
   - component: {fileID: 2131143193}
   - component: {fileID: 2131143192}
   - component: {fileID: 2131143191}
+  - component: {fileID: 2131143194}
   m_Layer: 0
   m_Name: Back to All Tickets Button
   m_TagString: Untagged
@@ -4830,14 +4903,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2131143189}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53715aa42824e417cbc48e282d8db14f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 1256669035}
-  destination: {fileID: 105167604}
-  tickets_list: {fileID: 1909408979}
+  source: {fileID: 0}
+  destination: {fileID: 0}
+  tickets_list: {fileID: 0}
 --- !u!61 &2131143192
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4939,6 +5012,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2131143194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131143189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52fe5848ac7524959ac8862dfce08eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  event_system: {fileID: 1073887068}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

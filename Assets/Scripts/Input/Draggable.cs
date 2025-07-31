@@ -1,3 +1,12 @@
+/**
+ * Draggable.cs
+ * 
+ * This script contains logic to handle GameObject drag-and-drop.
+ * Raycast is used to check the object that is clicked.
+ * 
+ * @author Austin Hwang
+ * @date 20 July 2025
+ */
 using UnityEngine;
 using UnityEngine.InputSystem;
 

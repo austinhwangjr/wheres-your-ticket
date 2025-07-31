@@ -6,6 +6,7 @@ using TMPro;
 public class GenerateTicket : MonoBehaviour, IPointerClickHandler
 {
     public GameObject ticket_textmeshpro;
+    public GameObject generated_ticket_box; // TEMP, TO CHANGE WHEN I IMPLEMENT MULTIPLE TICKET BOXES
 
     private PlayerInput player_input;
 
@@ -38,7 +39,7 @@ public class GenerateTicket : MonoBehaviour, IPointerClickHandler
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
             if (hit.collider != null && hit.transform == transform)
             {
-                CreateNewTicket();
+                generated_ticket_box.GetComponent<TicketBoxAttributes>().ticket = CreateNewTicket();
             }
         }
     }
@@ -53,7 +54,7 @@ public class GenerateTicket : MonoBehaviour, IPointerClickHandler
         //button.onClick.RemoveListener(GenerateTicket);
     }
 
-    private void CreateNewTicket()
+    private Ticket CreateNewTicket()
     {
         Ticket ticket = Ticket.GenerateRandomTicket();
 
@@ -66,5 +67,7 @@ public class GenerateTicket : MonoBehaviour, IPointerClickHandler
         );
 
         Debug.Log("GENERATE TICKET");
+
+        return ticket;
     }
 }
