@@ -1,4 +1,6 @@
+using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -6,6 +8,7 @@ public class HoverText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 {
     //TextMeshPro textmeshpro;
     public SpriteRenderer bg_sprite_renderer;
+    public UnityEngine.UI.Image bg_image;
     public TextMeshPro text_tmp;
     public Color initial_bg_color;
     public Color hover_bg_color;
@@ -14,7 +17,14 @@ public class HoverText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        bg_sprite_renderer.color = hover_bg_color;
+        if (bg_image != null)
+        {
+            bg_image.color = hover_bg_color;
+        }
+        if (bg_sprite_renderer != null)
+        {
+            bg_sprite_renderer.color = hover_bg_color;
+        }
         text_tmp.color = hover_text_color;
         //GetComponent<TextMeshPro>().color = Color.cyan;
         //GetComponent<TextMeshPro>().fontStyle = FontStyles.Underline;
@@ -22,7 +32,14 @@ public class HoverText : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        bg_sprite_renderer.color = initial_bg_color;
+        if (bg_image != null)
+        {
+            bg_image.color = initial_bg_color;
+        }
+        if (bg_sprite_renderer != null)
+        {
+            bg_sprite_renderer.color = initial_bg_color;
+        }
         text_tmp.color = initial_text_color;
         //GetComponent<TextMeshPro>().color = Color.black;
         //GetComponent<TextMeshPro>().fontStyle = FontStyles.Normal;
