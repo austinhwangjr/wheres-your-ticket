@@ -24,7 +24,7 @@ public class OpenSelectedTicket : MonoBehaviour, IPointerClickHandler
         if (event_system != null)
         {
             PageManager pm = event_system.GetComponent<PageManager>();
-            if (pm != null)
+            if (pm != null && GetComponent<TicketBoxAttributes>() != null)
             {
                 pm.ShowTicketPage(GetComponent<TicketBoxAttributes>().ticket);
             }

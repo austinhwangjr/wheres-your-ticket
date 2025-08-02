@@ -24,9 +24,12 @@ public class PageManager : MonoBehaviour
     // When user clicks on a single ticket
     public void ShowTicketPage(Ticket ticket)
     {
-        home_page.SetActive(false);
-        ticket_information_page.SetActive(true);
-        tickets_list.SetActive(false);
+        if (home_page != null && ticket_information_page != null && tickets_list != null)
+        {
+            home_page.SetActive(false);
+            ticket_information_page.SetActive(true);
+            tickets_list.SetActive(false);
+        }
 
         // Set the selected ticket
         ticket_selected = ticket;
