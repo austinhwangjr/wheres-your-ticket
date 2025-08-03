@@ -33,7 +33,7 @@ public class PageManager : MonoBehaviour
 
         // Set the selected ticket
         ticket_selected = ticket;
-        selected_ticket_box.GetComponent<TicketBoxAttributes>().ticket = ticket;
+        selected_ticket_box.GetComponent<TicketBoxAttributes>().ticket = ticket_selected;
 
         Debug.Log("Selected ticket: " + ticket.title);
     }

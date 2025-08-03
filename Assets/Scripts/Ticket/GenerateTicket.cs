@@ -5,8 +5,10 @@ using TMPro;
 
 public class GenerateTicket : MonoBehaviour, IPointerClickHandler
 {
-    public GameObject ticket_textmeshpro;
-    public GameObject generated_ticket_box; // TEMP, TO CHANGE WHEN I IMPLEMENT MULTIPLE TICKET BOXES
+    [SerializeField]
+    private GameObject all_tickets_list_content;
+    [SerializeField]
+    private GameObject ticket_box_prefab;
 
     private PlayerInput player_input;
 
@@ -28,18 +30,40 @@ public class GenerateTicket : MonoBehaviour, IPointerClickHandler
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //button.onClick.AddListener(GenerateTicket);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Raycast to check if button is clicked
         if (player_input.Gameplay.LeftMouse.triggered)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()), Vector2.zero);
             if (hit.collider != null && hit.transform == transform)
             {
-                generated_ticket_box.GetComponent<TicketBoxAttributes>().ticket = CreateNewTicket();
+                // Generate a new instance of the ticket box prefab
+                GameObject generated_ticket_box = Instantiate(ticket_box_prefab, all_tickets_list_content.GetComponent<RectTransform>());
+
+                // Assign generated ticket box with new ticket data
+                TicketBoxAttributes ticketBoxAttributes = generated_ticket_box.GetComponent<TicketBoxAttributes>();
+                Transform ticketBoxText = generated_ticket_box.transform.GetChild(0);   // TEMP, Ticket Box Text is the only child for now
+
+                if (ticketBoxAttributes == null)
+                {
+                    Debug.LogError("TicketBoxAttributes component not found on generated ticket box");
+                }
+                if (ticketBoxText == null)
+                {
+                    Debug.LogError("Ticket Box Text child not found on generated ticket box");
+                }
+                if (ticketBoxAttributes != null && ticketBoxText != null)
+                {
+                    ticketBoxAttributes.ticket = CreateNewTicket(ticketBoxText.GetComponent<TextMeshProUGUI>());
+                    Debug.Log("Ticket box assigned with ticket data");
+                }
+                
+                //generated_ticket_box.GetComponent<TicketBoxAttributes>().ticket = CreateNewTicket();
             }
         }
     }
@@ -49,23 +73,18 @@ public class GenerateTicket : MonoBehaviour, IPointerClickHandler
         //CreateNewTicket();
     }
 
-    private void OnDestroy()
-    {
-        //button.onClick.RemoveListener(GenerateTicket);
-    }
-
-    private Ticket CreateNewTicket()
+    private Ticket CreateNewTicket(TextMeshProUGUI textMeshPro)
     {
         Ticket ticket = Ticket.GenerateRandomTicket();
 
-        if (ticket_textmeshpro != null)
+        if (textMeshPro != null)
         {
-            ticket_textmeshpro.GetComponent<TextMeshProUGUI>().SetText(
+            textMeshPro.GetComponent<TextMeshProUGUI>().SetText(
                 $"Ticket:\n" +
-                $"Title: {ticket.title}\n" +
-                $"Classification: {ticket.classification}\n" +
-                $"Created By: {ticket.created_by}\n" +
-                $"Priority: {ticket.priority}\n"
+                $"Title: {ticket.title}, " +
+                $"Classification: {ticket.classification}, " +
+                $"Created By: {ticket.created_by}, " +
+                $"Priority: {ticket.priority}"
             );
         }
 

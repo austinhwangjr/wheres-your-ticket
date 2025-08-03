@@ -11,12 +11,16 @@ using UnityEngine.EventSystems;
 
 public class OpenSelectedTicket : MonoBehaviour, IPointerClickHandler
 {
-    [SerializeField]
     private GameObject event_system;
 
     private void Awake()
     {
 
+    }
+
+    private void Start()
+    {
+        event_system = GameObject.Find("EventSystem");
     }
 
     public void OnPointerClick(PointerEventData eventData)
