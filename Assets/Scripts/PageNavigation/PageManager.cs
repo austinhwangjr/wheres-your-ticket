@@ -18,6 +18,8 @@ public class PageManager : MonoBehaviour
     private GameObject selected_ticket_box;
     [SerializeField]
     private GameObject tickets_list;
+    [SerializeField]
+    private GameObject task_overlay;
 
     private Ticket ticket_selected; // The ticket that the user selects
 
@@ -47,5 +49,17 @@ public class PageManager : MonoBehaviour
 
         // Reset the selected ticket
         ticket_selected = null;
+    }
+
+    // When user clicks on button to open the task overlay
+    public void ShowTaskOverlay()
+    {
+        task_overlay.SetActive(true);
+    }
+
+    // When user clicks on button to close the task overlay
+    public void HideTaskOverlay()
+    {
+        task_overlay.SetActive(false);
     }
 }
