@@ -1,5 +1,5 @@
 /**
- * OpenTicketTask.cs
+ * TaskOverlayButtonScript.cs
  * 
  * This script calls the function to enable the task overlay for the existing task.
  * 
