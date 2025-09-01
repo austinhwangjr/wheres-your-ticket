@@ -7,7 +7,9 @@ public class PauseMenu : MonoBehaviour
     public static bool isPaused;
 
     [SerializeField]
-    private GameObject pauseMenu;
+    private GameObject pause_menu;
+    [SerializeField]
+    private GameObject audio_menu;
     private PlayerInput player_input;
 
     //-----Player input setup-----//
@@ -29,7 +31,7 @@ public class PauseMenu : MonoBehaviour
     //-----Pause menu setup-----//
     void Start()
     {
-        pauseMenu.SetActive(false);
+        pause_menu.SetActive(false);
     }
 
     void Update()
@@ -50,7 +52,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        pauseMenu.SetActive(true);
+        pause_menu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
     }
@@ -58,9 +60,15 @@ public class PauseMenu : MonoBehaviour
     //-----Pause menu buttons-----//
     public void Resume()
     {
-        pauseMenu.SetActive(false);
+        pause_menu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
+    }
+
+    public void Options()
+    {
+        pause_menu.SetActive(false);
+        audio_menu.SetActive(true);
     }
 
     public void Home()
@@ -72,5 +80,12 @@ public class PauseMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    // Temp for audio menu
+    public void Back()
+    {
+        audio_menu.SetActive(false);
+        pause_menu.SetActive(true);
     }
 }
