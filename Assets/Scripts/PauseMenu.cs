@@ -65,12 +65,6 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
     }
 
-    public void Options()
-    {
-        pause_menu.SetActive(false);
-        audio_menu.SetActive(true);
-    }
-
     public void Home()
     {
         Time.timeScale = 1f;
@@ -80,12 +74,5 @@ public class PauseMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
-    }
-
-    // Temp for audio menu
-    public void Back()
-    {
-        audio_menu.SetActive(false);
-        pause_menu.SetActive(true);
     }
 }
