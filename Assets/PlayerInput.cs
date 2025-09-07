@@ -118,6 +118,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Enter"",
+                    ""type"": ""Button"",
+                    ""id"": ""55acf8cd-ee9c-4b1d-bf48-1db7c8467b47"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -151,6 +160,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Middle Mouse"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""efc7433b-8d4e-4969-8b10-3e33cf262f87"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Enter"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -229,6 +249,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Gameplay_LeftMouse = m_Gameplay.FindAction("Left Mouse", throwIfNotFound: true);
         m_Gameplay_RightMouse = m_Gameplay.FindAction("Right Mouse", throwIfNotFound: true);
         m_Gameplay_MiddleMouse = m_Gameplay.FindAction("Middle Mouse", throwIfNotFound: true);
+        m_Gameplay_Enter = m_Gameplay.FindAction("Enter", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Escape = m_UI.FindAction("Escape", throwIfNotFound: true);
@@ -317,6 +338,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_LeftMouse;
     private readonly InputAction m_Gameplay_RightMouse;
     private readonly InputAction m_Gameplay_MiddleMouse;
+    private readonly InputAction m_Gameplay_Enter;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -340,6 +362,10 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Gameplay/MiddleMouse".
         /// </summary>
         public InputAction @MiddleMouse => m_Wrapper.m_Gameplay_MiddleMouse;
+        /// <summary>
+        /// Provides access to the underlying input action "Gameplay/Enter".
+        /// </summary>
+        public InputAction @Enter => m_Wrapper.m_Gameplay_Enter;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -375,6 +401,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @MiddleMouse.started += instance.OnMiddleMouse;
             @MiddleMouse.performed += instance.OnMiddleMouse;
             @MiddleMouse.canceled += instance.OnMiddleMouse;
+            @Enter.started += instance.OnEnter;
+            @Enter.performed += instance.OnEnter;
+            @Enter.canceled += instance.OnEnter;
         }
 
         /// <summary>
@@ -395,6 +424,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @MiddleMouse.started -= instance.OnMiddleMouse;
             @MiddleMouse.performed -= instance.OnMiddleMouse;
             @MiddleMouse.canceled -= instance.OnMiddleMouse;
+            @Enter.started -= instance.OnEnter;
+            @Enter.performed -= instance.OnEnter;
+            @Enter.canceled -= instance.OnEnter;
         }
 
         /// <summary>
@@ -576,6 +608,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMiddleMouse(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Enter" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnEnter(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
