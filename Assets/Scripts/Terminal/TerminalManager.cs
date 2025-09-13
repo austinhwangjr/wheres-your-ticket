@@ -9,6 +9,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
+using System;
 
 public class TerminalManager : MonoBehaviour
 {
@@ -33,10 +35,17 @@ public class TerminalManager : MonoBehaviour
     [SerializeField]
     private GameObject message_list;
 
+    Interpreter interpreter;
+
     private void Awake()
     {
         player_input = new PlayerInput();
         terminal_input.onSubmit.AddListener(HandleSubmit);
+    }
+
+    private void Start()
+    {
+        interpreter = GetComponent<Interpreter>();
     }
 
     private void OnEnable()
@@ -60,13 +69,19 @@ public class TerminalManager : MonoBehaviour
         ClearInputField();
         AddDirectoryLine(input);
 
+        // Add interpretation lines
+        int lines = AddInterpreterLines(interpreter.Interpret(input));
+
+        // Scroll to bottom
+        ScrollToBottom(lines);
+
         // Push terminal input to the bottom
         user_input_line.transform.SetAsLastSibling();
 
         // Re-focus on input field
         terminal_input.ActivateInputField();
         terminal_input.Select();
-        
+
         // OLD METHOD, IN ONGUI
         /*if (terminal_input.isFocused && terminal_input.text != "" && player_input.Gameplay.RightShift.WasPerformedThisFrame())
         {
@@ -96,7 +111,7 @@ public class TerminalManager : MonoBehaviour
     {
         // Resize command line container
         Vector2 messageListSize = message_list.GetComponent<RectTransform>().sizeDelta;
-        message_list.GetComponent<RectTransform>().sizeDelta = new Vector2(messageListSize.x, messageListSize.y + 55f);
+        message_list.GetComponent<RectTransform>().sizeDelta = new Vector2(messageListSize.x, messageListSize.y + 35f);
 
         // Instantiate directory line
         GameObject directoryLine = Instantiate(directory_line, message_list.transform);
@@ -106,5 +121,39 @@ public class TerminalManager : MonoBehaviour
 
         // Set text
         directoryLine.GetComponentsInChildren<TMP_Text>()[1].text = input;
+    }
+
+    int AddInterpreterLines(List<string> interpretation)
+    {
+        for (int i = 0; i < interpretation.Count; ++i)
+        {
+            // Instantiate response line
+            GameObject responseLine = Instantiate(response_line, message_list.transform);
+
+            // Set child index (last index)
+            responseLine.transform.SetAsLastSibling();
+
+            // Resize command line container
+            Vector2 messageListSize = message_list.GetComponent<RectTransform>().sizeDelta;
+            message_list.GetComponent<RectTransform>().sizeDelta = new Vector2(messageListSize.x, messageListSize.y + 35f);
+
+            // Set text
+            responseLine.GetComponentsInChildren<TMP_Text>()[0].text = interpretation[i];
+        }
+
+        return interpretation.Count;
+    }
+
+    private void ScrollToBottom(int lines)
+    {
+        Debug.Log("Lines: " + lines);
+        if (lines > 4)
+        {
+            scroll_rect.velocity = new Vector2(0f, 300f);
+        }
+        else
+        {
+            scroll_rect.verticalNormalizedPosition = 0f;
+        }
     }
 }
