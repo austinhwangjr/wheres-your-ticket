@@ -78,15 +78,15 @@ public class GenerateTicket : MonoBehaviour, IPointerClickHandler
         Ticket ticket = Ticket.GenerateRandomTicket();
 
         if (textMeshPro != null)
-        {
-            textMeshPro.GetComponent<TextMeshProUGUI>().SetText(
-                $"Ticket:\n" +
-                $"Title: {ticket.title}, " +
-                $"Classification: {ticket.classification}, " +
-                $"Created By: {ticket.created_by}, " +
-                $"Priority: {ticket.priority}"
-            );
-        }
+            {
+                textMeshPro.GetComponent<TextMeshProUGUI>().SetText(
+                    $"Ticket:\n" +
+                    $"Title: {ticket.title}, " +
+                    $"Classification: {ticket.classification}, " +
+                    $"Created By: {ticket.created_by}, " +
+                    $"Priority: {ticket.priority}"
+                );
+            }
 
         Debug.Log("GENERATE TICKET");
 

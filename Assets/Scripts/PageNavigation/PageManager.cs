@@ -21,7 +21,8 @@ public class PageManager : MonoBehaviour
     [SerializeField]
     private GameObject task_overlay;
 
-    private Ticket ticket_selected; // The ticket that the user selects
+    public Ticket ticket_selected; // The ticket that the user selects
+    public int current_ticket_id = 0;
 
     // When user clicks on a single ticket
     public void ShowTicketPage(Ticket ticket)
@@ -37,7 +38,7 @@ public class PageManager : MonoBehaviour
         ticket_selected = ticket;
         selected_ticket_box.GetComponent<TicketBoxAttributes>().ticket = ticket_selected;
 
-        Debug.Log("Selected ticket: " + ticket.title);
+        Debug.Log("Selected ticket: " + ticket.title + ", ID: " + ticket.id);
     }
 
     // When user goes back to the home page

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 
 public class Ticket
 {
+    public int id { get; set; }
     public string title { get; set; }
     //public string task { get; set; }
     public string classification { get; set; }
@@ -22,6 +23,11 @@ public class Ticket
     // Constructor
     private Ticket(TicketData ticketData, UserData userData)
     {
+        if (GameObject.Find("EventSystem") != null)
+        {
+            id = GameObject.Find("EventSystem").GetComponent<PageManager>().current_ticket_id;
+            GameObject.Find("EventSystem").GetComponent<PageManager>().current_ticket_id++;
+        }
         title = ticketData.title;
         //task = ticketData.task;
         classification = ticketData.classification;
