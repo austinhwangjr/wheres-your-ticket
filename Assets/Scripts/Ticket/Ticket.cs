@@ -1,7 +1,9 @@
 /**
  * Ticket.cs
  * 
- * This class holds the data for a ticket displayed on IT Center
+ * This class holds the data for a ticket displayed on IT Center.
+ * If a ticket needs certain attributes, it should be added here.
+ * Not to be confused with TicketBoxAttributes.cs (for ticket boxes in the home page)
  * 
  * @author Austin Hwang
  * @date 9 July 2025

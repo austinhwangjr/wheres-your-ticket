@@ -1,3 +1,11 @@
+/**
+ * DisplayCurrentTicket.cs
+ * 
+ * This script is used in TicketInformationPage to constantly show the current ticket's information
+ * 
+ * @author Austin Hwang
+ * @date 31 July 2025
+ */
 using UnityEngine;
 using TMPro;
 

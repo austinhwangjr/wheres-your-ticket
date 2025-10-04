@@ -1,3 +1,11 @@
+/**
+ * GenerateTicket.cs
+ * 
+ * This script generates tickets. For now, it generates a random ticket via button click.
+ * 
+ * @author Austin Hwang
+ * @date 20 July 2025
+ */
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;

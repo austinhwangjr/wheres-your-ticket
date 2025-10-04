@@ -28,6 +28,19 @@ public class Interpreter : MonoBehaviour
         {
             Application.Quit();
         }*/
+        if (args[0] == "wmic")
+        {
+            // wmic bios get serialnumber
+            if (args.Length == 4 && args[1] == "bios" && args[2] == "get" && args[3] == "serialnumber")
+            {
+                response.Add("SerialNumber");
+                response.Add("placeholder_S/N"); // TODO: SerialNumber here
+            }
+            else
+            {
+                response.Add("Invalid wmic command.");
+            }
+        }
         else
         {
             response.Add("Unknown command. Type help for a list of commands.");

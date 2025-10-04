@@ -1,3 +1,11 @@
+/**
+ * PauseMenu.cs
+ * 
+ * This class contains the pause menu logic.
+ * 
+ * @author Austin Hwang
+ * @date 20 July 2025
+ */
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;

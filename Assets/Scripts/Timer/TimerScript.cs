@@ -1,3 +1,11 @@
+/**
+ * TimerScript.cs
+ * 
+ * This script is used to simulate the in-game clock.
+ * 
+ * @author Austin Hwang
+ * @date 1 August 2025
+ */
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
