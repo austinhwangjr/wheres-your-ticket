@@ -7,64 +7,97 @@
  * @author Austin Hwang
  * @date 7 October 2025
  */
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class WireDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
+    private Vector3 start_point;
     private Vector3 start_position;
+    private Transform snap_target;
+
+    [SerializeField]
+    private CanvasRenderer wire_end;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        start_position = transform.parent.position;
+        start_point = transform.parent.position;
+        start_position = transform.position;
+        snap_target = null;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        //lineRenderer.enabled = true;
-        //lineRenderer.SetPosition(0, transform.position);
+
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         // Update moving wire's position on pointer drag
+        // Vector3 newPosition = Camera.main.ScreenToWorldPoint(eventData.position);
+        // newPosition.z = transform.position.z;
+        // transform.position = newPosition;
         RectTransform rectTransform = GetComponent<RectTransform>();
         rectTransform.anchoredPosition += eventData.delta;
 
-        // Update moving wire's direction
-        Vector3 direction = transform.position - start_position;
-        transform.right = direction;
-        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        // Check for nearby connection points for snapping
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
+        foreach (Collider2D collider in colliders)
+        {
+            // Check if not self
+            if (collider.gameObject != gameObject)
+            {
+                // Update wire to connection point
+                //UpdateWire(collider.transform.position, false);
+                snap_target = collider.transform;
+                return;
+            }
+        }
 
-        
+        // Update the wire
+        UpdateWire(transform.position, false);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        // // Raycast to check what was hit
-        // if (eventData.pointerCurrentRaycast.gameObject != null)
+        if (snap_target != null)
+        {
+            UpdateWire(snap_target.position, false);
+        }
+
+        else
+        {
+            // Reset wire position
+            UpdateWire(start_position, true);
+        }
+        // Reset wire position
+        //UpdateWire(start_position, true);
+    }
+
+    private void UpdateWire(Vector3 newPos, bool reset = false)
+    {
+        // Update moving wire's position
+        //GetComponent<RectTransform>().anchoredPosition = newPos;
+
+        transform.position = newPos;
+
+        // if (reset == true)
         // {
-        //     var target = eventData.pointerCurrentRaycast.gameObject.GetComponent<WireTarget>();
-        //     if (target != null && target.colorName == colorName)
-        //     {
-        //         Debug.Log($"Matched {colorName}!");
-        //         // Lock the line
-        //         lineRenderer.SetPosition(1, target.transform.position);
-        //         lineRenderer.startColor = Color.green;
-        //         lineRenderer.endColor = Color.green;
-        //         // Mark both as completed
-        //     }
-        //     else
-        //     {
-        //         Debug.Log("Wrong match!");
-        //         lineRenderer.enabled = false;
-        //     }
+        //     transform.position = newPos;
         // }
-        // else
-        // {
-        //     lineRenderer.enabled = false;
-        // }
+
+        // Update moving wire's direction
+        Vector3 direction = transform.position - start_point;
+        transform.right = direction * transform.lossyScale.x;
+        //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        // Update wire scale
+        float distance = Vector3.Distance(start_point, transform.position);
+        RectTransform wire_end_rect = wire_end.GetComponent<RectTransform>();
+        wire_end_rect.sizeDelta = new Vector2(distance, wire_end_rect.sizeDelta.y);
+        //transform.localScale = new Vector3(distance, wire_end.transform.localScale.y, wire_end.transform.localScale.z);
     }
 }
