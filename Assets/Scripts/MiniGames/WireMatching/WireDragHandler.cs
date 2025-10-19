@@ -19,6 +19,8 @@ public class WireDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     [SerializeField]
     private CanvasRenderer wire_end;
+    [SerializeField]
+    private GameObject light_on;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -30,7 +32,8 @@ public class WireDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-
+        // Reset the snap target
+        snap_target = null;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -43,7 +46,27 @@ public class WireDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         rectTransform.anchoredPosition += eventData.delta;
 
         // Check for nearby connection points for snapping
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
+        // Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 0.2f);
+        // foreach (Collider2D collider in colliders)
+        // {
+        //     // Check if not self
+        //     if (collider.gameObject != gameObject)
+        //     {
+        //         // Update wire to connection point
+        //         //UpdateWire(collider.transform.position, false);
+        //         snap_target = collider.transform;
+        //         return;
+        //     }
+        // }
+
+        // Update the wire
+        UpdateWire(transform.position, false);
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        // Check for nearby connection points for snapping
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 50f);
         foreach (Collider2D collider in colliders)
         {
             // Check if not self
@@ -52,28 +75,38 @@ public class WireDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
                 // Update wire to connection point
                 //UpdateWire(collider.transform.position, false);
                 snap_target = collider.transform;
-                return;
+                Debug.Log("Snap 1");
+
+                if (transform.parent.name.Equals(collider.transform.parent.name))
+                {
+                    collider.GetComponent<WireDragHandler>()?.Done();
+                    Done();
+                }
+
+                break;
             }
         }
 
-        // Update the wire
-        UpdateWire(transform.position, false);
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
+        // Check if snapping is required
         if (snap_target != null)
         {
             UpdateWire(snap_target.position, false);
+            Debug.Log("Snap correct");
         }
-
         else
         {
             // Reset wire position
             UpdateWire(start_position, true);
+            Debug.Log("Resetting");
         }
         // Reset wire position
         //UpdateWire(start_position, true);
+    }
+
+    private void Done()
+    {
+        light_on.SetActive(true);
+        Destroy(this);
     }
 
     private void UpdateWire(Vector3 newPos, bool reset = false)
