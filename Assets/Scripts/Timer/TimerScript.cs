@@ -12,14 +12,24 @@ using UnityEngine.UI;
 
 public class TimerScript : MonoBehaviour
 {
-    private int hours = 11, minutes = 55; // Time starts at 9:00 am
+    // vars for actual timer
+    private int hours = 9, minutes = 0; // Time starts at 9:00 am
     private float time;
+
+    // vars to calculate seconds per in-game minute
+    private float round_time_seconds;
+    private float seconds_per_ingame_minute;
+
+    [SerializeField]
+    private int round_time_minutes = 3; // How many real-life minutes in a round
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         UpdateTimerDisplay();
         time = 0.0f;
+        round_time_seconds = round_time_minutes * 60f;
+        seconds_per_ingame_minute = round_time_seconds / ((18 - 9) * 60);   // 9am to 6pm in seconds
     }
 
     // Update is called once per frame
@@ -27,10 +37,10 @@ public class TimerScript : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        // Every 0.5 real-life seconds, update in-game
-        if (time >= 0.5f)
+        // Every seconds_per_ingame_minute real-life seconds, update in-game
+        if (time >= seconds_per_ingame_minute)
         {
-            time -= 0.5f;
+            time -= seconds_per_ingame_minute;
 
             // Handle am/pm and hours/mins logic
             ++minutes;
