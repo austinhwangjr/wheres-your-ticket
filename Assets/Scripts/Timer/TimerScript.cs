@@ -9,9 +9,12 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class TimerScript : MonoBehaviour
 {
+    public static event Action<int, int> OnMinuteChanged; 
+
     // vars for actual timer
     private int hours = 9, minutes = 0; // Time starts at 9:00 am
     private float time;
@@ -54,6 +57,9 @@ public class TimerScript : MonoBehaviour
                     hours = 0;
                 }
             }
+
+            // Notify listeners
+            OnMinuteChanged?.Invoke(hours, minutes);
 
             // Update timer display
             UpdateTimerDisplay();

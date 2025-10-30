@@ -18,6 +18,15 @@ public class GenerateTicket : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private GameObject ticket_box_prefab;
 
+    [Header("Ticket Generation Timing (in-game minutes)")]
+    [SerializeField]
+    private int min_interval = 15;
+    [SerializeField]
+    private int max_interval = 25;
+
+    private int next_ticket_minute;  // when the next ticket will be generated (in in-game minutes)
+    private int current_minute_total; // current in-game time in total minutes
+
     private PlayerInput player_input;
 
     private void Awake()
@@ -28,21 +37,59 @@ public class GenerateTicket : MonoBehaviour, IPointerClickHandler
     private void OnEnable()
     {
         player_input.Gameplay.Enable();
+
+        TimerScript.OnMinuteChanged += HandleMinuteChanged;
     }
 
     private void OnDisable()
     {
         player_input.Gameplay.Disable();
+
+        TimerScript.OnMinuteChanged -= HandleMinuteChanged;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        ScheduleNextTicket();
+    }
+
+    private void HandleMinuteChanged(int hours, int minutes)
+    {
+        current_minute_total = (hours * 60) + minutes;
+
+        if (current_minute_total >= next_ticket_minute)
+        {
+            GenerateNewTicket();
+            ScheduleNextTicket();
+        }
+    }
+
+    private void ScheduleNextTicket()
+    {
+        int interval = Random.Range(min_interval, max_interval + 1);
+        next_ticket_minute = current_minute_total + interval;
+    }
+
+    private void GenerateNewTicket()
+    {
+        GameObject generated_ticket_box = Instantiate(ticket_box_prefab, all_tickets_list_content.GetComponent<RectTransform>());
+
+        TicketBoxAttributes ticketBoxAttributes = generated_ticket_box.GetComponent<TicketBoxAttributes>();
+        Transform ticketBoxText = generated_ticket_box.transform.GetChild(0);
+
+        if (ticketBoxAttributes == null || ticketBoxText == null)
+        {
+            Debug.LogError("Missing TicketBoxAttributes or TicketBoxText on generated ticket box.");
+            return;
+        }
+
+        ticketBoxAttributes.ticket = CreateNewTicket(ticketBoxText.GetComponent<TextMeshProUGUI>());
+        Debug.Log($"Ticket generated at in-game time {current_minute_total / 60}:{current_minute_total % 60:00}");
     }
 
     // Update is called once per frame
-    void Update()
+    /*void Update()
     {
         // Raycast to check if button is clicked
         if (player_input.Gameplay.LeftMouse.triggered)
@@ -74,7 +121,7 @@ public class GenerateTicket : MonoBehaviour, IPointerClickHandler
                 //generated_ticket_box.GetComponent<TicketBoxAttributes>().ticket = CreateNewTicket();
             }
         }
-    }
+    }*/
 
     public void OnPointerClick(PointerEventData eventData)
     {
