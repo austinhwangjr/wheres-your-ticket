@@ -79,6 +79,8 @@ public class WireDragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
                 if (transform.parent.name.Equals(collider.transform.parent.name))
                 {
+                    WireMatchingWinCondition.instance.IncrementCount(1);
+
                     collider.GetComponent<WireDragHandler>()?.Done();
                     Done();
                 }

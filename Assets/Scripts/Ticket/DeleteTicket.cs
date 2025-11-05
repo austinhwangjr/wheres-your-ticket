@@ -41,6 +41,10 @@ public class DeleteTicket : MonoBehaviour, IPointerClickHandler
                     {
                         // Destroy the gameobject itself and redirect to home page
                         Destroy(ticket_list_content.transform.GetChild(i).gameObject);
+                        if (GameObject.Find("Ticket Tab " + pm.ticket_selected.id) != null)
+                        {
+                            Destroy(GameObject.Find("Ticket Tab " + pm.ticket_selected.id));
+                        }
                         pm.ShowHomePage();
                         break;
                     }

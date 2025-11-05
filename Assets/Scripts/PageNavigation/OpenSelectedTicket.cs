@@ -38,16 +38,20 @@ public class OpenSelectedTicket : MonoBehaviour, IPointerClickHandler
             PageManager pm = event_system.GetComponent<PageManager>();
             if (pm != null && GetComponent<TicketBoxAttributes>() != null)
             {
-                // When clicking on ticket in the home page (all tickets page), create respective tab box and open ticket
-                GameObject generatedTicketTab = Instantiate(ticket_tab_prefab, tickets_tab_group.transform);
+                if (GameObject.Find("Ticket Tab " + GetComponent<TicketBoxAttributes>().ticket.id) == null)
+                {
+                    // When clicking on ticket in the home page (all tickets page), create respective tab box and open ticket
+                    GameObject generatedTicketTab = Instantiate(ticket_tab_prefab, tickets_tab_group.transform);
+                    generatedTicketTab.name = "Ticket Tab " + GetComponent<TicketBoxAttributes>().ticket.id;
 
-                Vector3 newPos = generatedTicketTab.transform.position;
-                newPos.x = -8.427f + (tickets_tab_group.transform.childCount - 1) * (2.30573f + 0.2f); // TEMP
-                generatedTicketTab.transform.position = newPos;
+                    Vector3 newPos = generatedTicketTab.transform.position;
+                    newPos.x = -8.427f + (tickets_tab_group.transform.childCount - 1) * (2.30573f + 0.2f); // TEMP
+                    generatedTicketTab.transform.position = newPos;
 
-                generatedTicketTab.GetComponent<OpenTicketTab>().SetTicket(GetComponent<TicketBoxAttributes>().ticket);
-                Transform ticketTabText = generatedTicketTab.transform.GetChild(0);   // TEMP, Ticket Box Text is the only child for now
-                ticketTabText.GetComponent<TextMeshPro>().SetText("Ticket " + GetComponent<TicketBoxAttributes>().ticket.id);
+                    generatedTicketTab.GetComponent<OpenTicketTab>().SetTicket(GetComponent<TicketBoxAttributes>().ticket);
+                    Transform ticketTabText = generatedTicketTab.transform.GetChild(0);   // TEMP, Ticket Box Text is the only child for now
+                    ticketTabText.GetComponent<TextMeshPro>().SetText("Ticket " + GetComponent<TicketBoxAttributes>().ticket.id);
+                }
 
                 pm.ShowTicketPage(GetComponent<TicketBoxAttributes>().ticket);
             }
