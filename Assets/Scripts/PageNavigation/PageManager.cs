@@ -22,7 +22,7 @@ public class PageManager : MonoBehaviour
     private GameObject task_overlay;
 
     public Ticket ticket_selected; // The ticket that the user selects
-    public int current_ticket_id = 0;
+    public int current_ticket_id = 0; // The current ticket ID (for ticket generation)
 
     // When user clicks on a single ticket
     public void ShowTicketPage(Ticket ticket)

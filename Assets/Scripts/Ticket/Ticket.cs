@@ -22,6 +22,8 @@ public class Ticket
     public string remaining_time { get; set; }
     //public List<string> comments { get; set; } // May or may not do commenting system
 
+    public bool is_completed { get; set; }
+
     // Constructor
     private Ticket(TicketData ticketData, UserData userData)
     {
@@ -40,6 +42,9 @@ public class Ticket
 
         // Set time based on priority
         //remaining_time = CalculateRemainingTime(priority);
+
+        // Set completion status to false by default
+        is_completed = false;
     }
 
     // Generate a random ticket
