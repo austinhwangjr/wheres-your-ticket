@@ -7,10 +7,15 @@
  * @author Austin Hwang
  * @date 28 December 2025
  */
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using System;
 
 public class LivesManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject lives_text;
     [SerializeField]
     private int maxLives = 3;
     private int currentLives;
@@ -24,10 +29,13 @@ public class LivesManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (lives_text != null)
+        {
+            lives_text.GetComponent<TextMeshPro>().text = "Lives: " + currentLives.ToString();
+        }
     }
 
-    private void LoseLife()
+    public void LoseLife()
     {
         if (currentLives > 0)
         {
@@ -43,7 +51,7 @@ public class LivesManager : MonoBehaviour
         }
     }
     
-    private void ResetLives()
+    public void ResetLives()
     {
         currentLives = maxLives;
     }
