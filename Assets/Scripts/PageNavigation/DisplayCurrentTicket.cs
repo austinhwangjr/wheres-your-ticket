@@ -28,9 +28,11 @@ public class DisplayCurrentTicket : MonoBehaviour
             ticket_textmeshpro.GetComponent<TextMeshPro>().SetText(
                 $"Ticket:\n" +
                 $"Title: {currentTicket.title}\n" +
+                $"Description: {currentTicket.description}\n" +
                 $"Classification: {currentTicket.classification}\n" +
                 $"Created By: {currentTicket.created_by}\n" +
-                $"Priority: {currentTicket.priority}\n"
+                $"Priority: {currentTicket.priority}\n" +
+                $"Due By: {currentTicket.due_by / 60}:{currentTicket.due_by % 60:00}"
             );
         }
     }

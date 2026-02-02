@@ -131,15 +131,18 @@ public class GenerateTicket : MonoBehaviour, IPointerClickHandler
     private Ticket CreateNewTicket(TextMeshProUGUI textMeshPro)
     {
         Ticket ticket = Ticket.GenerateRandomTicket();
+        ticket.due_by = ticket.minutes_for_completion + current_minute_total;
 
         if (textMeshPro != null)
             {
+                // Display is done in main ticket page
                 textMeshPro.GetComponent<TextMeshProUGUI>().SetText(
                     $"Ticket:\n" +
                     $"Title: {ticket.title}, " +
                     $"Classification: {ticket.classification}, " +
                     $"Created By: {ticket.created_by}, " +
-                    $"Priority: {ticket.priority}"
+                    $"Priority: {ticket.priority}, " +
+                    $"Due By: {ticket.due_by / 60}:{ticket.due_by % 60:00}"
                 );
             }
 

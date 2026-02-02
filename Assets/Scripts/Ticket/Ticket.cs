@@ -15,11 +15,14 @@ public class Ticket
 {
     public int id { get; set; }
     public string title { get; set; }
+    public string description { get; set; }
     //public string task { get; set; }
     public string classification { get; set; }
     public string created_by { get; set; }
     public string priority { get; set; }
-    public string remaining_time { get; set; }
+    public int minutes_for_completion { get; set; }
+    public int due_by { get; set; }
+    public string remaining_time { get; set; } // Probably not needed
     //public List<string> comments { get; set; } // May or may not do commenting system
 
     public bool is_completed { get; set; }
@@ -33,12 +36,42 @@ public class Ticket
             GameObject.Find("EventSystem").GetComponent<PageManager>().current_ticket_id++;
         }
         title = ticketData.title;
+        description = ticketData.description;
         //task = ticketData.task;
         classification = ticketData.classification;
         created_by = userData.name;
 
         // Temporary priority system
-        priority = userData.is_VIP ? "P1" : "P5";
+        //priority = userData.is_VIP ? "P1" : "P5";
+        if (userData.is_VIP)
+        {
+            priority = "P1";
+        }
+        else
+        {
+            if (classification == "IT Issue")
+            {
+                priority = "P2";
+            }
+            else
+            {
+                priority = "P3";
+            }
+        }
+
+        // Based on priority, set minutes for completion
+        switch (priority)
+        {
+            case "P1":
+                minutes_for_completion = 30;
+                break;
+            case "P2":
+                minutes_for_completion = 60;
+                break;
+            case "P3":
+                minutes_for_completion = 120;
+                break;
+        }
 
         // Set time based on priority
         //remaining_time = CalculateRemainingTime(priority);
