@@ -15,6 +15,7 @@ public class MainMenuButtons : MonoBehaviour, IPointerClickHandler
     public enum main_menu_button
     {
         Start,
+        Options,
         Quit
     }
 
@@ -30,6 +31,9 @@ public class MainMenuButtons : MonoBehaviour, IPointerClickHandler
             case main_menu_button.Start:
                 StartGame();
                 break;
+            case main_menu_button.Options:
+                OpenOptions();
+                break;
             case main_menu_button.Quit:
                 Application.Quit();
                 break;
@@ -39,5 +43,10 @@ public class MainMenuButtons : MonoBehaviour, IPointerClickHandler
     private void StartGame()
     {
         SceneManager.LoadScene(scene_to_load.name);
+    }
+
+    private void OpenOptions()
+    {
+        //SceneManager.LoadScene(scene_to_load.name);
     }
 }
