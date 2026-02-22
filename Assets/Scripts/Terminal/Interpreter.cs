@@ -17,18 +17,24 @@ public class Interpreter : MonoBehaviour
     {
         response.Clear();
 
-        string[] args = input.Split();
+        if (string.IsNullOrWhiteSpace(input))
+            return response;
 
-        if (args[0] == "help")
+        string[] args = input.ToLower().Split();
+        string command = args[0];
+
+        if (command == "help")
         {
+            response.Add("Available Commands:");
             response.Add("help - Display a list of commands");
             response.Add("exit - Exit the game");
+            response.Add("wmic bios get serialnumber - Get the system serial number");
         }
-        /*else if (args[0] == "exit")
+        /*else if (command  == "exit")
         {
             Application.Quit();
         }*/
-        if (args[0] == "wmic")
+        else if (command == "wmic")
         {
             // wmic bios get serialnumber
             if (args.Length == 4 && args[1] == "bios" && args[2] == "get" && args[3] == "serialnumber")
