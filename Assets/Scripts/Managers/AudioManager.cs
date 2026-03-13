@@ -10,7 +10,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
+    public static AudioManager instance { get; private set; }
 
     [SerializeField]
     private AudioSource sfxObject;

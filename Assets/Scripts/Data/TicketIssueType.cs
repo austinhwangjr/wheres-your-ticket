@@ -10,7 +10,8 @@
 public enum IssueType
 {
     None,
-    WifiNoInternet,
+    WifiNotOn,
+    WifiOnNoInternet,
     VpnCannotConnect,
-    OutlookNotOpening
+    ComputerSlow
 }
