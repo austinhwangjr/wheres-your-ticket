@@ -27,9 +27,9 @@ public class DesktopIssueConfig : ScriptableObject
 [System.Serializable]
 public class ActionResult
 {
-    public string actionId;          // e.g. "reinstall_wifi_cert"
-    public Sprite newWifiIcon;       // Icon to swap to after action
-    public Sprite newVpnIcon;
-    public string vpnStatusText;     // e.g. "Connected" or "Disconnected"
-    public bool resolvedTicket;      // Does this action fix the issue?
+    public string action_id;                // e.g. "reinstall_wifi_cert"
+    public Sprite new_wifi_icon;            // New wifi icon to swap to after action
+    public string new_vpn_text;             // New VPN status text to swap to after action
+    public bool new_vpn_can_connect;        // Should be True most of the time
+    public bool new_sfc_scannow_executed;   // Should be True most of the time
 }

@@ -17,4 +17,9 @@ MonoBehaviour:
   init_vpn_text: Ready to connect
   init_vpn_can_connect: 1
   init_sfc_scannow_executed: 0
-  actions: []
+  actions:
+  - action_id: do_sfc_scannow
+    new_wifi_icon: {fileID: 0}
+    new_vpn_text: 
+    new_vpn_can_connect: 0
+    new_sfc_scannow_executed: 1

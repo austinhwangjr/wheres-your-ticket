@@ -78,7 +78,7 @@ public class UserDesktopManager : MonoBehaviour
     /*--------------------------------------------------*/
 
     /*--------------------------------------------------*/
-    // Call this from your action buttons (e.g. "Reinstall Wifi Cert" button).
+    // Called when an action button is pressed (e.g. "Reinstall Wifi Cert" button).
     public void OnActionPerformed(string actionId)
     {
         if (active_config == null) 
@@ -86,21 +86,21 @@ public class UserDesktopManager : MonoBehaviour
 
         foreach (var action in active_config.actions)
         {
-            if (action.actionId != actionId)
+            if (action.action_id != actionId)
                 continue;
 
             // Apply whatever this action changes
-            if (action.newWifiIcon != null)
-                wifi_taskbar_icon.GetComponent<SpriteRenderer>().sprite = action.newWifiIcon;
+            if (action.new_wifi_icon != null)
+                wifi_taskbar_icon.GetComponent<SpriteRenderer>().sprite = action.new_wifi_icon;
 
-            if (action.newVpnIcon != null)
-                vpn_status_text.GetComponent<TextMeshPro>().text = action.vpnStatusText;
+            if (action.new_vpn_text != null)
+                vpn_status_text.GetComponent<TextMeshPro>().text = action.new_vpn_text;
 
-            // something vpn_can_connect = action.vpnCanConnect;
-            // something sfc_scannow_executed = action.sfcScannowExecuted;
+            // something vpn_can_connect = action.new_vpn_can_connect;
+            // something sfc_scannow_executed = action.new_sfc_scannow_executed;
 
-            if (action.resolvedTicket)
-                Debug.Log("Ticket resolved!"); // Hook into your TicketManager here
+            // if (action.resolvedTicket)
+            //     Debug.Log("Ticket resolved!"); // Hook into your TicketManager here
 
             break;
         }
