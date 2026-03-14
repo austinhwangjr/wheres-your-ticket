@@ -173,8 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2bc5b7a3d0004049b2da6c565e3ca20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tickets_tab_group: {fileID: 0}
-  ticket_tab_prefab: {fileID: 16375151508475493, guid: f1ce33d7e2f224d45b84bba9cf37757d, type: 3}
+  ticket_tab_prefab: {fileID: 4557306598017239890, guid: caf0bf45cdebd2247a9af74fedbe64a9, type: 3}
 --- !u!114 &3649211225487104552
 MonoBehaviour:
   m_ObjectHideFlags: 0
