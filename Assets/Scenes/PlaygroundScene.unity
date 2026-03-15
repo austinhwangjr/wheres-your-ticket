@@ -15821,11 +15821,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 142db3ccaee754dbbb7aacd17864209a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  all_configs:
-  - {fileID: 11400000, guid: 0cc65db85980f7b4799819495ebb94f4, type: 2}
+  all_issue_configs:
   - {fileID: 11400000, guid: fa7a1ff1c9ae76f4fbbf5024e0535684, type: 2}
   - {fileID: 11400000, guid: d43598ad93a9d1046bc0645952d61e8d, type: 2}
   - {fileID: 11400000, guid: 550118abd88deca448f9c1d154043246, type: 2}
+  - {fileID: 11400000, guid: 0cc65db85980f7b4799819495ebb94f4, type: 2}
+  - {fileID: 11400000, guid: 66e06e475312d0c44a54dc3b8e4a225a, type: 2}
+  - {fileID: 11400000, guid: 3d410d6cc0f3b794e91440e0526b843a, type: 2}
+  all_action_configs:
+  - {fileID: 11400000, guid: d2ea5ca81fee2554a84e56206c542e0b, type: 2}
+  - {fileID: 11400000, guid: 2f6f13626d8d3ec4187c12cef341d2ca, type: 2}
   wifi_taskbar_icon: {fileID: 410176213}
   vpn_status_text: {fileID: 1319271645}
   desktop_interface: {fileID: 589075873}

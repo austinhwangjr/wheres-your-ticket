@@ -34,7 +34,7 @@ public class WireMatchingWinCondition : MonoBehaviour
         if (on_count == wire_count)
         {
             // Send event that the win condition has been met
-            TriggerTaskComplete?.Invoke(GameObject.Find("EventSystem").GetComponent<PageManager>().current_ticket_id);
+            TriggerTaskComplete?.Invoke(PageManager.instance.current_ticket_id);
         }
     }
 }

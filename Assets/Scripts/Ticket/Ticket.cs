@@ -30,6 +30,7 @@ public class Ticket
     //public List<string> comments { get; set; } // May or may not do commenting system
 
     public bool is_completed { get; set; }
+    public bool desktop_opened_before { get; set; }
 
     // Constructor
     private Ticket(TicketData ticketData, UserData userData)

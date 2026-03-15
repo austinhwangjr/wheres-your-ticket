@@ -15,7 +15,9 @@ public class IssueResolutionButtonScript : MonoBehaviour, IPointerClickHandler
     {
         None,
         ReinstallWifiCert,
-        ReinstallVpnCert
+        ReinstallVpnCert,
+        TurnOnWifi,
+        TurnOffWifi,
     }
     [SerializeField]
     private DesktopButtonType desktop_button_type;

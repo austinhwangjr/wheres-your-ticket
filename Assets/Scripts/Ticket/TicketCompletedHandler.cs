@@ -6,7 +6,6 @@
  * @author Austin Hwang
  * @date 4 Nov 2025
  */
-using System.Collections.Specialized;
 using UnityEngine;
 
 public class TicketCompletedHandler : MonoBehaviour
