@@ -6,18 +6,18 @@
  * @author Austin Hwang
  * @date 9 July 2025
  */
-using UnityEngine;
+using System;
 
 [System.Serializable]
 public class TicketData
 {
     public string title;
     public string description;
-    public string task;
     public string classification;
+    public string issue_type;
 }
 
-[System.Serializable]
+[Serializable]
 public class TicketDataList
 {
     public TicketData[] tickets;

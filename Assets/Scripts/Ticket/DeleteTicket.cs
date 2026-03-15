@@ -14,8 +14,6 @@ public class DeleteTicket : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     private GameObject ticket_list_content;
-    [SerializeField]
-    private GameObject event_system;
 
     private void Awake()
     {
@@ -29,25 +27,21 @@ public class DeleteTicket : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (ticket_list_content != null && event_system != null)
+        if (ticket_list_content != null)
         {
-            PageManager pm = event_system.GetComponent<PageManager>();
-            if (pm != null)
+            // On button click, iterate through ticket list and delete the ticket
+            for (int i = 0; i < ticket_list_content.transform.childCount; ++i)
             {
-                // On button click, iterate through ticket list and delete the ticket
-                for (int i = 0; i < ticket_list_content.transform.childCount; ++i)
+                if (ticket_list_content.transform.GetChild(i).GetComponent<TicketBoxAttributes>().ticket.id == PageManager.instance.ticket_selected.id)
                 {
-                    if (ticket_list_content.transform.GetChild(i).GetComponent<TicketBoxAttributes>().ticket.id == pm.ticket_selected.id)
+                    // Destroy the gameobject itself and redirect to home page
+                    Destroy(ticket_list_content.transform.GetChild(i).gameObject);
+                    if (GameObject.Find("Ticket Tab " + PageManager.instance.ticket_selected.id) != null)
                     {
-                        // Destroy the gameobject itself and redirect to home page
-                        Destroy(ticket_list_content.transform.GetChild(i).gameObject);
-                        if (GameObject.Find("Ticket Tab " + pm.ticket_selected.id) != null)
-                        {
-                            Destroy(GameObject.Find("Ticket Tab " + pm.ticket_selected.id));
-                        }
-                        pm.ShowHomePage();
-                        break;
+                        Destroy(GameObject.Find("Ticket Tab " + PageManager.instance.ticket_selected.id));
                     }
+                    PageManager.instance.ShowHomePage();
+                    break;
                 }
             }
         }

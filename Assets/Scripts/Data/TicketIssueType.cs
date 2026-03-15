@@ -13,5 +13,7 @@ public enum IssueType
     WifiNotOn,
     WifiOnNoInternet,
     VpnCannotConnect,
-    ComputerSlow
+    ComputerSlow,
+    ManuallyMapPrinter,
+    ApplySoftwareLicense
 }

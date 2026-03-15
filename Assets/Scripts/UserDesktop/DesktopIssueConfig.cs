@@ -6,6 +6,7 @@
  * @author Austin Hwang
  * @date 13 March 2026
  */
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "IssueConfig", menuName = "HelpdeskSimulator/Issue Config")]
@@ -24,7 +25,7 @@ public class DesktopIssueConfig : ScriptableObject
     public ActionResult[] actions;      // Each button maps to a result
 }
 
-[System.Serializable]
+[Serializable]
 public class ActionResult
 {
     public string action_id;                // e.g. "reinstall_wifi_cert"

@@ -27,7 +27,7 @@ public class TicketCompletedHandler : MonoBehaviour
     private void HandleTicketCompleted(int ticketID)
     {
         // Find ticket with id ticketID
-        Ticket ticket = GameObject.Find("EventSystem").GetComponent<PageManager>().ticket_selected;
+        Ticket ticket = PageManager.instance.ticket_selected;
 
         // Set ticket as completed
         ticket.is_completed = true;
@@ -38,12 +38,12 @@ public class TicketCompletedHandler : MonoBehaviour
 
     public void Update()
     {
-        if (GameObject.Find("EventSystem").GetComponent<PageManager>().ticket_selected == null)
+        if (PageManager.instance.ticket_selected == null)
         {
             return;
         }
-        
-        if (GameObject.Find("EventSystem").GetComponent<PageManager>().ticket_selected.is_completed)
+
+        if (PageManager.instance.ticket_selected.is_completed)
         {
             if (delete_ticket_button.transform.parent.gameObject.activeSelf == true)
             {

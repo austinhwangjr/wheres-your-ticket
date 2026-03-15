@@ -18,7 +18,8 @@ public class RemoteDesktopButton : MonoBehaviour, IPointerClickHandler
     {
         overlay.SetActive(true);
         //IssueType currentIssue = TicketManager.instance.ActiveTicket.issueType;
-        IssueType currentIssue = IssueType.WifiOnNoInternet;
+        //IssueType currentIssue = IssueType.WifiOnNoInternet;
+        IssueType currentIssue = PageManager.instance.ticket_selected.issue_type;
         UserDesktopManager.instance.LoadDesktopForIssue(currentIssue);
     }
 }

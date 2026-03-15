@@ -14,11 +14,15 @@ using System.Collections.Generic;
 public class Ticket
 {
     public int id { get; set; }
-    public string title { get; set; }
-    public string description { get; set; }
-    //public string task { get; set; }
-    public string classification { get; set; }
-    public string created_by { get; set; }
+
+    // Data from JSON
+    public string title { get; set; }               // In TicketData.cs and TicketData.JSON
+    public string description { get; set; }         // In TicketData.cs and TicketData.JSON
+    public IssueType issue_type { get; set; }       // In TicketData.cs and TicketData.JSON
+    public string classification { get; set; }      // In TicketData.cs and TicketData.JSON
+    public string created_by { get; set; }          // In UserData.cs and UserData.JSON
+
+    // Calculated data
     public string priority { get; set; }
     public int minutes_for_completion { get; set; }
     public int due_by { get; set; }
@@ -30,19 +34,43 @@ public class Ticket
     // Constructor
     private Ticket(TicketData ticketData, UserData userData)
     {
+        // Set ticket ID
         if (GameObject.Find("EventSystem") != null)
         {
-            id = GameObject.Find("EventSystem").GetComponent<PageManager>().current_ticket_id;
-            GameObject.Find("EventSystem").GetComponent<PageManager>().current_ticket_id++;
+            id = PageManager.instance.current_ticket_id;
+            PageManager.instance.current_ticket_id++;
         }
+
+        // Set ticket data from JSON
         title = ticketData.title;
         description = ticketData.description;
-        //task = ticketData.task;
         classification = ticketData.classification;
         created_by = userData.name;
+        
+        // Convert issue type string to enum
+        switch (ticketData.issue_type)
+        {
+            case "WifiNotOn":
+                issue_type = IssueType.WifiNotOn;
+                break;
+            case "WifiOnNoInternet":
+                issue_type = IssueType.WifiOnNoInternet;
+                break;
+            case "VpnCannotConnect":
+                issue_type = IssueType.VpnCannotConnect;
+                break;
+            case "ComputerSlow":
+                issue_type = IssueType.ComputerSlow;
+                break;
+            case "ManuallyMapPrinter":
+                issue_type = IssueType.ManuallyMapPrinter;
+                break;
+            case "ApplySoftwareLicense":
+                issue_type = IssueType.ApplySoftwareLicense;
+                break;
+        }
 
-        // Temporary priority system
-        //priority = userData.is_VIP ? "P1" : "P5";
+        // Priority is based on VIP status and classification
         if (userData.is_VIP)
         {
             priority = "P1";

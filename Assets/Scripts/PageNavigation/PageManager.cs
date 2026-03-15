@@ -10,6 +10,8 @@ using UnityEngine;
 
 public class PageManager : MonoBehaviour
 {
+    public static PageManager instance;
+    
     [SerializeField]
     private GameObject home_page;
     [SerializeField]
@@ -23,6 +25,14 @@ public class PageManager : MonoBehaviour
 
     public Ticket ticket_selected; // The ticket that the user selects
     public int current_ticket_id = 0; // The current ticket ID (for ticket generation)
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     // When user clicks on a single ticket
     public void ShowTicketPage(Ticket ticket)

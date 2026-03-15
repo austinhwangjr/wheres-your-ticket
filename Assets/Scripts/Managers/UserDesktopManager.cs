@@ -24,11 +24,6 @@ public class UserDesktopManager : MonoBehaviour
     private GameObject wifi_taskbar_icon;
     [SerializeField]
     private GameObject vpn_status_text;
-    //[SerializeField] 
-    //private GameObject taskbar;
-    //[SerializeField] 
-    //private GameObject vpn_app_window;
-    // Add references to other desktop element scripts here
 
     private DesktopIssueConfig active_config;                       // The currently loaded issue config for the remote desktop session
     private Dictionary<IssueType, DesktopIssueConfig> config_map;   // Map for fast lookup of configs by issue type

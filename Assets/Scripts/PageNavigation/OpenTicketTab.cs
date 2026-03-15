@@ -12,7 +12,6 @@ using UnityEngine.EventSystems;
 
 public class OpenTicketTab : MonoBehaviour, IPointerClickHandler
 {
-    private GameObject event_system;
     private Ticket ticket;
 
     private void Awake()
@@ -22,7 +21,7 @@ public class OpenTicketTab : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
-        event_system = GameObject.Find("EventSystem");
+        
     }
 
     public void SetTicket(Ticket t)
@@ -32,13 +31,6 @@ public class OpenTicketTab : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (event_system != null)
-        {
-            PageManager pm = event_system.GetComponent<PageManager>();
-            if (pm != null)
-            {
-                pm.ShowTicketPage(ticket);
-            }
-        }
+        PageManager.instance.ShowTicketPage(ticket);
     }
 }

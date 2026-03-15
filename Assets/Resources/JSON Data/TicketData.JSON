@@ -1,22 +1,40 @@
 {
     "Items": [
         {
+            "title": "Wifi not on",
+            "description": "Help me turn on the wifi thanks",
+            "classification": "IT Issue",
+            "issue_type": "WifiNotOn"
+        },
+        {
             "title": "Cannot connect to wifi",
             "description": "Pls help, cannot connect to wifi after getting new laptop",
-            "task": "Re-enroll device",
-            "classification": "IT Issue"
+            "classification": "IT Issue",
+            "issue_type": "WifiOnNoInternet"
+        },
+        {
+            "title": "VPN Issue",
+            "description": "Pls I need to do work from home",
+            "classification": "IT Issue",
+            "issue_type": "VpnCannotConnect"
+        },
+        {
+            "title": "Computer is slow",
+            "description": "Laggy and slow computer",
+            "classification": "IT Issue",
+            "issue_type": "ComputerSlow"
         },
         {
             "title": "Cannot print",
             "description": "Cannot find office printer",
-            "task": "Manually map printer",
-            "classification": "IT Issue"
+            "classification": "IT Issue",
+            "issue_type": "ManuallyMapPrinter"
         },
         {
             "title": "Apply for ABC License",
             "description": "For daily work",
-            "task": "Apply License",
-            "classification": "IT Service"
+            "classification": "IT Service",
+            "issue_type": "ApplySoftwareLicense"
         }
     ]
 }

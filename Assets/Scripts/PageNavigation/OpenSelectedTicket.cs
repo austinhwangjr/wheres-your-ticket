@@ -10,7 +10,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
 
 public class OpenSelectedTicket : MonoBehaviour, IPointerClickHandler
 {
@@ -35,8 +34,7 @@ public class OpenSelectedTicket : MonoBehaviour, IPointerClickHandler
     {
         if (event_system != null)
         {
-            PageManager pm = event_system.GetComponent<PageManager>();
-            if (pm != null && GetComponent<TicketBoxAttributes>() != null)
+            if (GetComponent<TicketBoxAttributes>() != null)
             {
                 if (GameObject.Find("Ticket Tab " + GetComponent<TicketBoxAttributes>().ticket.id) == null)
                 {
@@ -47,7 +45,7 @@ public class OpenSelectedTicket : MonoBehaviour, IPointerClickHandler
                     generatedTicketTab.GetComponentInChildren<TextMeshPro>().SetText("Ticket " + GetComponent<TicketBoxAttributes>().ticket.id);
                 }
 
-                pm.ShowTicketPage(GetComponent<TicketBoxAttributes>().ticket);
+                PageManager.instance.ShowTicketPage(GetComponent<TicketBoxAttributes>().ticket);
             }
         }
     }
