@@ -46,7 +46,6 @@ public class PauseMenu : MonoBehaviour
     {
         if (player_input.UI.Escape.triggered)
         {
-            Debug.Log("Escape");
             if (isPaused)
             {
                 Resume();
@@ -62,6 +61,7 @@ public class PauseMenu : MonoBehaviour
     {
         pause_menu.SetActive(true);
         Time.timeScale = 0f;
+        MusicManager.instance.PauseBGM();
         isPaused = true;
     }
 
@@ -69,7 +69,8 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pause_menu.SetActive(false);
-        Time.timeScale = 1f;
+        Time.timeScale = 1f;        
+        MusicManager.instance.ResumeBGM();
         isPaused = false;
     }
 

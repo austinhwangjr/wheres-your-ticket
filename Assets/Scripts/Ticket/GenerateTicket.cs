@@ -7,16 +7,21 @@
  * @date 20 July 2025
  */
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.InputSystem;
 using TMPro;
 
-public class GenerateTicket : MonoBehaviour, IPointerClickHandler
+public class GenerateTicket : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField]
     private GameObject all_tickets_list_content;
     [SerializeField]
     private GameObject ticket_box_prefab;
+
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip ticket_generation_sfx;
+    [SerializeField]
+    private float volume = 1f;
 
     [Header("Ticket Generation Timing (in-game minutes)")]
     [SerializeField]
@@ -71,10 +76,10 @@ public class GenerateTicket : MonoBehaviour, IPointerClickHandler
         next_ticket_minute = current_minute_total + interval;
     }
 
+    // Generates a ticket box, and assigns it a ticket
     private void GenerateNewTicket()
     {
         GameObject generated_ticket_box = Instantiate(ticket_box_prefab, all_tickets_list_content.GetComponent<RectTransform>());
-
         TicketBoxAttributes ticketBoxAttributes = generated_ticket_box.GetComponent<TicketBoxAttributes>();
         Transform ticketBoxText = generated_ticket_box.transform.GetChild(0);
 
@@ -85,6 +90,7 @@ public class GenerateTicket : MonoBehaviour, IPointerClickHandler
         }
 
         ticketBoxAttributes.ticket = CreateNewTicket(ticketBoxText.GetComponent<TextMeshProUGUI>());
+        AudioManager.instance.PlaySFXClip(ticket_generation_sfx, transform, volume);
         Debug.Log($"Ticket generated at in-game time {current_minute_total / 60}:{current_minute_total % 60:00}");
     }
 
@@ -123,30 +129,23 @@ public class GenerateTicket : MonoBehaviour, IPointerClickHandler
         }
     }*/
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        //CreateNewTicket();
-    }
-
     private Ticket CreateNewTicket(TextMeshProUGUI textMeshPro)
     {
         Ticket ticket = Ticket.GenerateRandomTicket();
         ticket.due_by = ticket.minutes_for_completion + current_minute_total;
 
         if (textMeshPro != null)
-            {
-                // Display is done in main ticket page
-                textMeshPro.GetComponent<TextMeshProUGUI>().SetText(
-                    $"Ticket:\n" +
-                    $"Title: {ticket.title}, " +
-                    $"Classification: {ticket.classification}, " +
-                    $"Created By: {ticket.created_by}, " +
-                    $"Priority: {ticket.priority}, " +
-                    $"Due By: {ticket.due_by / 60}:{ticket.due_by % 60:00}"
-                );
-            }
-
-        Debug.Log("GENERATE TICKET");
+        {
+            // Display is done in main ticket page
+            textMeshPro.GetComponent<TextMeshProUGUI>().SetText(
+                $"Ticket:\n" +
+                $"Title: {ticket.title}, " +
+                $"Classification: {ticket.classification}, " +
+                $"Created By: {ticket.created_by}, " +
+                $"Priority: {ticket.priority}, " +
+                $"Due By: {ticket.due_by / 60}:{ticket.due_by % 60:00}"
+            );
+        }
 
         return ticket;
     }
