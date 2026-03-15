@@ -19,6 +19,8 @@ public class RemoteDesktopButton : MonoBehaviour, IPointerClickHandler
         overlay.SetActive(true);
         IssueType currentIssue = PageManager.instance.ticket_selected.issue_type;
 
+        // IssueType currentIssue = IssueType.WifiNotOn;
+
         
         // Note: Maybe the ticket should have a private bool "desktop_opened_before" to track if the desktop has been opened before. If true, load existing desktop state. If false, load new desktop state.
         if (!PageManager.instance.ticket_selected.desktop_opened_before)
@@ -30,6 +32,6 @@ public class RemoteDesktopButton : MonoBehaviour, IPointerClickHandler
         {
             UserDesktopManager.instance.LoadExistingDesktop();
         }
-        //UserDesktopManager.instance.LoadDesktopForIssue(currentIssue);
+        // UserDesktopManager.instance.LoadDesktopForIssue(currentIssue);
     }
 }

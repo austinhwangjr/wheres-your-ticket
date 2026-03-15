@@ -9,18 +9,21 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public enum DesktopButtonType
+{
+    None,
+    ReinstallWifiCert,
+    ReinstallVpnCert,
+    ToggleWifi,
+}
+
 public class IssueResolutionButtonScript : MonoBehaviour, IPointerClickHandler
 {
-    public enum DesktopButtonType
-    {
-        None,
-        ReinstallWifiCert,
-        ReinstallVpnCert,
-        TurnOnWifi,
-        TurnOffWifi,
-    }
     [SerializeField]
     private DesktopButtonType desktop_button_type;
+
+    [SerializeField]
+    private ToggleWifiScript toggle_wifi_script;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -31,6 +34,10 @@ public class IssueResolutionButtonScript : MonoBehaviour, IPointerClickHandler
                 break;
             case DesktopButtonType.ReinstallVpnCert:
                 UserDesktopManager.instance.OnActionPerformed("reinstall_vpn_cert");
+                break;
+            case DesktopButtonType.ToggleWifi:
+                Debug.Log($"Toggling wifi ssssss");
+                toggle_wifi_script.ToggleWifiState();
                 break;
         }
     }

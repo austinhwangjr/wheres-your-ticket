@@ -98,27 +98,38 @@ public class UserDesktopManager : MonoBehaviour
         if (active_config == null) 
             return;
 
-        // Apply the action
-        if (action_config_map.TryGetValue(actionId, out DesktopActionConfig action))
-        {
-            if (action.new_wifi_icon != null)
-                wifi_taskbar_icon.GetComponent<SpriteRenderer>().sprite = action.new_wifi_icon;
-
-            if (action.new_vpn_text != null)
-                vpn_status_text.GetComponent<TextMeshPro>().text = action.new_vpn_text;
-
-            // something vpn_can_connect = action.new_vpn_can_connect;
-            // something sfc_scannow_executed = action.new_sfc_scannow_executed;
-        }
-        else
+        if (!action_config_map.TryGetValue(actionId, out DesktopActionConfig action))
         {
             Debug.LogWarning($"No action registered with id: {actionId}");
+            return;
         }
 
-        // Track and check completion against the active config's requirements
-        if (active_config == null)
-            return;
+        // If this action belongs to a mutex group, evict all other
+        // actions in that group from the performed set before adding this one
+        if (!string.IsNullOrEmpty(action.mutex_group))
+        {
+            //EvictMutexGroup(action.mutex_group, actionId);
+            foreach (var action_in_map in action_config_map.Values)
+            {
+                // Remove any other action in the same group that was previously performed
+                if (action_in_map.mutex_group == action.mutex_group && action_in_map.action_id != actionId)
+                    performed_actions.Remove(action_in_map.action_id);
+            }
 
+            Debug.Log($"Toggling");
+        }
+
+        // Apply the action
+        if (action.new_wifi_icon != null)
+            wifi_taskbar_icon.GetComponent<SpriteRenderer>().sprite = action.new_wifi_icon;
+
+        if (action.new_vpn_text != null)
+            vpn_status_text.GetComponent<TextMeshPro>().text = action.new_vpn_text;
+
+        // something vpn_can_connect = action.new_vpn_can_connect;
+        // something sfc_scannow_executed = action.new_sfc_scannow_executed;
+
+        // Track and check completion against the active config's requirements
         performed_actions.Add(actionId);
         CheckTicketCompletion();
     }
