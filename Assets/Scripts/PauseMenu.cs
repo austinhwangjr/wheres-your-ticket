@@ -20,6 +20,12 @@ public class PauseMenu : MonoBehaviour
     private GameObject audio_menu;
     private PlayerInput player_input;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip button_click_sfx;
+    [SerializeField]
+    private float volume = 1f;
+
     //-----Player input setup-----//
     private void Awake()
     {
@@ -46,6 +52,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (player_input.UI.Escape.triggered)
         {
+            AudioManager.instance.PlaySFXClip(button_click_sfx, transform, volume);
             if (isPaused)
             {
                 Resume();
@@ -77,7 +84,7 @@ public class PauseMenu : MonoBehaviour
     public void Home()
     {
         Time.timeScale = 1f;
-        //SceneManager.LoadScene("MainMenuScene");  // For future main menu
+        SceneManager.LoadScene("MainMenuScene");  // For future main menu
     }
 
     public void Quit()
