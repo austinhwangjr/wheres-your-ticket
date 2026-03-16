@@ -13,6 +13,12 @@
             "issue_type": "WifiOnNoInternet"
         },
         {
+            "title": "Cannot access intranet in office",
+            "description": "Cannot access intranet resources",
+            "classification": "IT Issue",
+            "issue_type": "CannotAccessIntranet"
+        },
+        {
             "title": "VPN Issue",
             "description": "Pls I need to do work from home",
             "classification": "IT Issue",

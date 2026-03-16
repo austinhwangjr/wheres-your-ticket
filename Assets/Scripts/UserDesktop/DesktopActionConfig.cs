@@ -18,7 +18,7 @@ public class DesktopActionConfig : ScriptableObject
     public string mutex_group; // e.g. "wifi_toggle" for TurnOnWifi + TurnOffWifi
 
     [Header("UI/Gameplay Changes")]
-    public Sprite new_wifi_icon;            // New wifi icon to swap to after action
+    //public Sprite new_wifi_icon;            // New wifi icon to swap to after action
     public string new_vpn_text;             // New VPN status text to swap to after action
     public bool new_vpn_can_connect;        // Should be True most of the time
     public bool new_sfc_scannow_executed;   // Should be True most of the time

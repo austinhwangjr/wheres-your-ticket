@@ -17,6 +17,10 @@ public class DesktopIssueConfig : ScriptableObject
 
     [Header("Initial Desktop State")]
     public Sprite init_wifi_icon;           // The initial wifi icon shown in the taskbar
+    //public WifiIconState init_wifi_icon_state;  // The initial state of the wifi icon (e.g. WifiOn, NoWifi, etc.)    
+    public bool init_wifi_on;               // Whether the wifi is initially on or off
+    public bool init_wifi_has_cert_issue;
+    public bool init_wifi_connected;
     public string init_vpn_text;            // The initial VPN status text shown in the VPN app
     public bool init_vpn_can_connect;       // The initial VPN state (whether the VPN can or cannot connect)
     public bool init_sfc_scannow_executed;  // Whether the user has already executed "sfc /scannow" command in Command Prompt

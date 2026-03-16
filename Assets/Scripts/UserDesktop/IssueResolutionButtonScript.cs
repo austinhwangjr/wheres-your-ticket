@@ -15,6 +15,8 @@ public enum DesktopButtonType
     ReinstallWifiCert,
     ReinstallVpnCert,
     ToggleWifi,
+    ConnectToInternalNetwork,
+    ConnectToOtherNetwork
 }
 
 public class IssueResolutionButtonScript : MonoBehaviour, IPointerClickHandler
@@ -36,8 +38,18 @@ public class IssueResolutionButtonScript : MonoBehaviour, IPointerClickHandler
                 UserDesktopManager.instance.OnActionPerformed("reinstall_vpn_cert");
                 break;
             case DesktopButtonType.ToggleWifi:
-                Debug.Log($"Toggling wifi ssssss");
+                if (toggle_wifi_script == null)
+                {
+                    Debug.LogError("ToggleWifiScript reference is not set.");
+                    return;
+                }
                 toggle_wifi_script.ToggleWifiState();
+                break;
+            case DesktopButtonType.ConnectToInternalNetwork:
+                UserDesktopManager.instance.OnActionPerformed("connect_to_internal_network");
+                break;
+            case DesktopButtonType.ConnectToOtherNetwork:
+                UserDesktopManager.instance.OnActionPerformed("connect_to_other_network");
                 break;
         }
     }

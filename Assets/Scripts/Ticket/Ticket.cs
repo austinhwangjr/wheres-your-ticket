@@ -60,6 +60,9 @@ public class Ticket
             case "VpnCannotConnect":
                 issue_type = IssueType.VpnCannotConnect;
                 break;
+            case "CannotAccessIntranet":
+                issue_type = IssueType.CannotAccessIntranet;
+                break;
             case "ComputerSlow":
                 issue_type = IssueType.ComputerSlow;
                 break;

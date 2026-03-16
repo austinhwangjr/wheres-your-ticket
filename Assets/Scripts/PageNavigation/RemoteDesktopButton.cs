@@ -17,21 +17,20 @@ public class RemoteDesktopButton : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         overlay.SetActive(true);
-        IssueType currentIssue = PageManager.instance.ticket_selected.issue_type;
+        IssueType currentIssue = PageManager.instance.ticket_selected.issue_type;        
+        UserDesktopManager.instance.LoadDesktopForIssue(currentIssue);
 
-        // IssueType currentIssue = IssueType.WifiNotOn;
-
+        // IssueType currentIssue = IssueType.CannotAccessIntranet;
         
-        // Note: Maybe the ticket should have a private bool "desktop_opened_before" to track if the desktop has been opened before. If true, load existing desktop state. If false, load new desktop state.
-        if (!PageManager.instance.ticket_selected.desktop_opened_before)
-        {
-            PageManager.instance.ticket_selected.desktop_opened_before = true;
-            UserDesktopManager.instance.LoadDesktopForIssue(currentIssue);
-        }
-        else
-        {
-            UserDesktopManager.instance.LoadExistingDesktop();
-        }
-        // UserDesktopManager.instance.LoadDesktopForIssue(currentIssue);
+        // // Note: Maybe the ticket should have a private bool "desktop_opened_before" to track if the desktop has been opened before. If true, load existing desktop state. If false, load new desktop state.
+        // if (!PageManager.instance.ticket_selected.desktop_opened_before)
+        // {
+        //     PageManager.instance.ticket_selected.desktop_opened_before = true;
+        //     UserDesktopManager.instance.LoadDesktopForIssue(currentIssue);
+        // }
+        // else
+        // {
+        //     UserDesktopManager.instance.LoadExistingDesktop();
+        // }
     }
 }

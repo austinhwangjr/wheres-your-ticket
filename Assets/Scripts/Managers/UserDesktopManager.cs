@@ -27,9 +27,11 @@ public class UserDesktopManager : MonoBehaviour
     [SerializeField]
     private GameObject wifi_taskbar_icon;
     [SerializeField]
+    private GameObject wifi_list;
+    [SerializeField]
     private GameObject vpn_status_text;
 
-    private DesktopIssueConfig active_config;                       // The currently loaded issue config for the remote desktop session
+    private DesktopIssueConfig active_config;                               // The currently loaded issue config for the remote desktop session
     private Dictionary<IssueType, DesktopIssueConfig> issue_config_map;   // Map for fast lookup of configs by issue type
     private Dictionary<string, DesktopActionConfig> action_config_map;     // Map for fast lookup of action configs by action id
     private HashSet<string> performed_actions = new HashSet<string>();
@@ -78,14 +80,33 @@ public class UserDesktopManager : MonoBehaviour
     {
         Debug.Log($"Loading desktop for issue: {config.issue_type}");
 
-        if (wifi_taskbar_icon == null || vpn_status_text == null)
+        if (vpn_status_text == null)
         {
             Debug.LogError("Desktop UI element references are not set in the inspector.");
             return;
         }
         
-        wifi_taskbar_icon.GetComponent<SpriteRenderer>().sprite = config.init_wifi_icon;
+        //wifi_taskbar_icon.GetComponent<SpriteRenderer>().sprite = config.init_wifi_icon;
+        //wifi_taskbar_icon.GetComponent<WifiIconScript>().current_state = config.init_wifi_icon_state;
+
+        WifiManager.instance.InitialiseState(
+            config.init_wifi_on,
+            config.init_wifi_has_cert_issue,
+            config.init_wifi_connected
+        );
+
+        wifi_list.GetComponent<ToggleWifiScript>().SetWifiState(config.init_wifi_on);
         vpn_status_text.GetComponent<TextMeshPro>().text = config.init_vpn_text;
+
+        if (config.issue_type == IssueType.CannotAccessIntranet)
+        {
+            WifiManager.instance.ConnectedToOtherNetwork();
+        }
+        else
+        {
+            WifiManager.instance.ConnectedToInternalNetwork();
+        }
+
         // something vpn_can_connect = config.init_vpn_can_connect;
         // something sfc_scannow_executed = config.init_sfc_scannow
     }
@@ -120,11 +141,26 @@ public class UserDesktopManager : MonoBehaviour
         }
 
         // Apply the action
-        if (action.new_wifi_icon != null)
-            wifi_taskbar_icon.GetComponent<SpriteRenderer>().sprite = action.new_wifi_icon;
+        //if (action.new_wifi_icon != null)
+            //wifi_taskbar_icon.GetComponent<SpriteRenderer>().sprite = action.new_wifi_icon;
+
+        switch (actionId)
+        {
+            case "turn_on_wifi":
+                WifiManager.instance.SetToggleState(true);
+                break;
+            case "turn_off_wifi":
+                WifiManager.instance.SetToggleState(false);
+                break;
+            case "reinstall_wifi_cert":
+                WifiManager.instance.SetCertIssue(false);
+                break;
+        }
 
         if (action.new_vpn_text != null)
             vpn_status_text.GetComponent<TextMeshPro>().text = action.new_vpn_text;
+
+        Debug.Log($"Applied action: {actionId}");
 
         // something vpn_can_connect = action.new_vpn_can_connect;
         // something sfc_scannow_executed = action.new_sfc_scannow_executed;
