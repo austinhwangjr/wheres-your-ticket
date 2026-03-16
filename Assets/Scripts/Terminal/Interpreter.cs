@@ -22,13 +22,16 @@ public class Interpreter : MonoBehaviour
         if (args[0] == "help")
         {
             response.Add("help - Display a list of commands");
-            response.Add("exit - Exit the game");
+            response.Add("wmic bios get serialnumber - Display the system's serial number");
+            response.Add("sfc /scannow - Clean up system files");
+            response.Add("exit - Exit the terminal");
         }
-        /*else if (args[0] == "exit")
+        else if (args[0] == "exit")
         {
-            Application.Quit();
-        }*/
-        if (args[0] == "wmic")
+            // Exit terminal
+            Destroy(gameObject);
+        }
+        else if (args[0] == "wmic")
         {
             // wmic bios get serialnumber
             if (args.Length == 4 && args[1] == "bios" && args[2] == "get" && args[3] == "serialnumber")
@@ -41,11 +44,28 @@ public class Interpreter : MonoBehaviour
                 response.Add("Invalid wmic command.");
             }
         }
+        else if (args[0] == "sfc")
+        {
+            // sfc /scannow
+            if (args.Length == 2 && args[1] == "/scannow")
+            {
+                response.Add("Beginning system scan...");
+                response.Add("Scan complete. No integrity violations found.");
+
+                // Trigger action after running sfc command
+                UserDesktopManager.instance.OnActionPerformed("execute_sfc_scannow");
+            }
+            else
+            {
+                response.Add("Invalid sfc command.");
+            }
+        }
         else
         {
             response.Add("Unknown command. Type help for a list of commands.");
         }
-
+        
+        response.Add("");
         return response;
     }
 }

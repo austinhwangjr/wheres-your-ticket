@@ -138,14 +138,9 @@ public class UserDesktopManager : MonoBehaviour
                 if (action_in_map.mutex_group == action.mutex_group && action_in_map.action_id != actionId)
                     performed_actions.Remove(action_in_map.action_id);
             }
-
-            Debug.Log($"Toggling");
         }
 
         // Apply the action
-        //if (action.new_wifi_icon != null)
-            //wifi_taskbar_icon.GetComponent<SpriteRenderer>().sprite = action.new_wifi_icon;
-
         switch (actionId)
         {
             case "turn_on_wifi":
@@ -159,6 +154,9 @@ public class UserDesktopManager : MonoBehaviour
                 break;
             case "reinstall_vpn_cert":
                 VpnManager.instance.CanConnectToVpn(true);
+                break;
+            case "execute_sfc_scannow":
+                // Doesn't change the desktop state, for track-keeping purposes only
                 break;
         }
 

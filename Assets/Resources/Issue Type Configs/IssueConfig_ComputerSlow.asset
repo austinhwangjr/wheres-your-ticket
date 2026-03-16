@@ -20,4 +20,5 @@ MonoBehaviour:
   init_vpn_text: Ready to Connect
   init_vpn_can_connect: 1
   init_sfc_scannow_executed: 0
-  required_action_ids: []
+  required_action_ids:
+  - execute_sfc_scannow
