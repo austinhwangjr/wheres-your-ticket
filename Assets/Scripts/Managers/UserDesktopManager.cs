@@ -96,6 +96,8 @@ public class UserDesktopManager : MonoBehaviour
         );
 
         wifi_list.GetComponent<ToggleWifiScript>().SetWifiState(config.init_wifi_on);
+
+        VpnManager.instance.has_cert_issue = !config.init_vpn_can_connect;
         vpn_status_text.GetComponent<TextMeshPro>().text = config.init_vpn_text;
 
         if (config.issue_type == IssueType.CannotAccessIntranet)
@@ -155,10 +157,13 @@ public class UserDesktopManager : MonoBehaviour
             case "reinstall_wifi_cert":
                 WifiManager.instance.SetCertIssue(false);
                 break;
+            case "reinstall_vpn_cert":
+                VpnManager.instance.CanConnectToVpn(true);
+                break;
         }
 
-        if (action.new_vpn_text != null)
-            vpn_status_text.GetComponent<TextMeshPro>().text = action.new_vpn_text;
+        // if (action.new_vpn_text != null)
+        //     vpn_status_text.GetComponent<TextMeshPro>().text = action.new_vpn_text;
 
         Debug.Log($"Applied action: {actionId}");
 
