@@ -4646,37 +4646,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &374534340
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 374534341}
-  m_Layer: 0
-  m_Name: Loading Bar (TODO)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &374534341
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 374534340}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1783166063}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &380814802 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2521500266883038803, guid: 2206d884e842240d5a69cb8bf9b90b65, type: 3}
@@ -7434,6 +7403,7 @@ GameObject:
   - component: {fileID: 680032149}
   - component: {fileID: 680032152}
   - component: {fileID: 680032151}
+  - component: {fileID: 680032154}
   - component: {fileID: 680032153}
   - component: {fileID: 680032150}
   m_Layer: 0
@@ -7587,6 +7557,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   terminal_group: {fileID: 1915557914}
+--- !u!114 &680032154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 680032148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e00b5e36dd51f43a78326682227d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cert_reinstalled_text:
+  - {fileID: 220463584}
+  - {fileID: 1046508506}
+  button_type: 1
 --- !u!1 &701244090
 GameObject:
   m_ObjectHideFlags: 0
@@ -7719,8 +7705,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   game_over_scene: {fileID: 102900000, guid: 39aaeca72b6ed4345aa6e1aa8c60aac1, type: 3}
+  win_scene: {fileID: 102900000, guid: fd1abe44a02283d46ae6415903e802bf, type: 3}
   lives_text: {fileID: 1159118647}
   maxLives: 5
+  lose_life_sfx: {fileID: 8300000, guid: 8331f957a31ca574787e0eadcdab0636, type: 3}
+  volume: 1
 --- !u!1 &725882247
 GameObject:
   m_ObjectHideFlags: 0
@@ -9024,7 +9013,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e00b5e36dd51f43a78326682227d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cert_reinstalled_text: {fileID: 220463584}
+  cert_reinstalled_text:
+  - {fileID: 220463584}
+  button_type: 0
 --- !u!1 &870981863
 GameObject:
   m_ObjectHideFlags: 0
@@ -13932,6 +13923,7 @@ GameObject:
   - component: {fileID: 1257687326}
   - component: {fileID: 1257687328}
   - component: {fileID: 1257687327}
+  - component: {fileID: 1257687329}
   m_Layer: 0
   m_Name: Button Background
   m_TagString: Untagged
@@ -14055,6 +14047,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1257687329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257687325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3de762e2cbf721a47ade2346538de523, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vpn_status_text: {fileID: 1319271645}
+  vpn_button_text: {fileID: 1371698255}
 --- !u!1 &1260367229
 GameObject:
   m_ObjectHideFlags: 0
@@ -15277,7 +15283,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e00b5e36dd51f43a78326682227d76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cert_reinstalled_text: {fileID: 1046508506}
+  cert_reinstalled_text:
+  - {fileID: 1046508506}
+  button_type: 0
 --- !u!1 &1319271645
 GameObject:
   m_ObjectHideFlags: 0
@@ -19512,7 +19520,6 @@ Transform:
   - {fileID: 1064363675}
   - {fileID: 220463587}
   - {fileID: 861157495}
-  - {fileID: 374534341}
   m_Father: {fileID: 429868188}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1786157063
@@ -20076,6 +20083,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   close_ticket_button: {fileID: 1100974709}
+  ticket_completed_sfx: {fileID: 8300000, guid: b56e43e7781907c4fb3c9f81580e12e8, type: 3}
+  volume: 1
 --- !u!4 &1880002242
 Transform:
   m_ObjectHideFlags: 0

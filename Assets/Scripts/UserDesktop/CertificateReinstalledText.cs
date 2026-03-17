@@ -11,11 +11,32 @@ using UnityEngine.EventSystems;
 
 public class CertificateReinstalledText : MonoBehaviour, IPointerClickHandler
 {
+    public enum ButtonType
+    {
+        Open,
+        Close
+    }
+
     [SerializeField]
-    private GameObject cert_reinstalled_text;
+    private GameObject[] cert_reinstalled_text;
+    [SerializeField]
+    private ButtonType button_type;
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        cert_reinstalled_text.SetActive(true);
+        if (button_type == ButtonType.Open)
+        {
+            foreach (GameObject text in cert_reinstalled_text)
+            {
+                text.SetActive(true);
+            }
+        }
+        else if (button_type == ButtonType.Close)
+        {
+            foreach (GameObject text in cert_reinstalled_text)
+            {
+                text.SetActive(false);
+            }
+        }
     }
 }

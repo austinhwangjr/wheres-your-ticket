@@ -13,6 +13,14 @@ public class TicketCompletedHandler : MonoBehaviour
     [SerializeField]
     private GameObject close_ticket_button;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip ticket_completed_sfx;
+    [SerializeField]
+    private float volume = 1f;
+
+    private bool has_played_completed_audio = false;
+
     private void OnEnable()
     {
         WireMatchingWinCondition.TriggerTaskComplete += HandleTicketCompleted;
@@ -47,6 +55,12 @@ public class TicketCompletedHandler : MonoBehaviour
             if (close_ticket_button.transform.parent.gameObject.activeSelf == true)
             {
                 close_ticket_button.SetActive(true);
+                
+                if (!has_played_completed_audio)
+                {
+                    AudioManager.instance.PlaySFXClip(ticket_completed_sfx, transform, volume);
+                    has_played_completed_audio = true;
+                }
             }
             else
             {
@@ -56,6 +70,7 @@ public class TicketCompletedHandler : MonoBehaviour
         else
         {
             close_ticket_button.SetActive(false);
+            has_played_completed_audio = false;
         }
     }
 }

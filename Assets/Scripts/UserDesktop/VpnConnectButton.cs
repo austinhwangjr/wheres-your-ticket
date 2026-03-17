@@ -20,7 +20,7 @@ public class VpnConnectButton : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         string buttonText = vpn_button_text.GetComponent<TextMeshPro>().text.Trim();
-        Debug.Log("Textt" + buttonText);
+        Debug.Log("Text" + buttonText);
         if (buttonText == "Connect")
         {
             Debug.Log("VPN Connect button clicked");

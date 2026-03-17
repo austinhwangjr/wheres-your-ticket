@@ -20,10 +20,18 @@ public class LivesManager : MonoBehaviour
     [SerializeField]
     private UnityEngine.Object game_over_scene;
     [SerializeField]
+    private UnityEngine.Object win_scene;
+    [SerializeField]
     private GameObject lives_text;
     [SerializeField]
     private int maxLives = 3;
     private int currentLives;
+
+    [Header("Audio")]
+    [SerializeField]
+    private AudioClip lose_life_sfx;
+    [SerializeField]
+    private float volume = 1f;
 
     private void Awake()
     {
@@ -51,6 +59,7 @@ public class LivesManager : MonoBehaviour
         if (currentLives > 0)
         {
             --currentLives;
+            AudioManager.instance.PlaySFXClip(lose_life_sfx, transform, volume);
             Debug.Log("Ticket breached, current lives: " + currentLives);
         }
         else
@@ -64,5 +73,10 @@ public class LivesManager : MonoBehaviour
     public void ResetLives()
     {
         currentLives = maxLives;
+    }
+
+    public void WinGame()
+    {
+        SceneManager.LoadScene(win_scene.name);
     }
 }

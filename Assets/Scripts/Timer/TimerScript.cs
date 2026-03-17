@@ -72,5 +72,10 @@ public class TimerScript : MonoBehaviour
         string minutesString = minutes.ToString("00");
         string amPmString = (hours >= 12) ? "pm" : "am";
         GetComponent<TextMeshPro>().text = $"{hoursString}:{minutesString} {amPmString}";
+
+        if (hours == 18 && minutes == 0)
+        {
+            LivesManager.instance.WinGame();;
+        }
     }
 }
