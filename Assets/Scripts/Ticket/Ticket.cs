@@ -16,11 +16,13 @@ public class Ticket
     public int id { get; set; }
 
     // Data from JSON
-    public string title { get; set; }               // In TicketData.cs and TicketData.JSON
-    public string description { get; set; }         // In TicketData.cs and TicketData.JSON
-    public IssueType issue_type { get; set; }       // In TicketData.cs and TicketData.JSON
-    public string classification { get; set; }      // In TicketData.cs and TicketData.JSON
-    public string created_by { get; set; }          // In UserData.cs and UserData.JSON
+    public string title { get; set; }                   // In TicketData.cs and TicketData.JSON
+    public string description { get; set; }             // In TicketData.cs and TicketData.JSON
+    public IssueType issue_type { get; set; }           // In TicketData.cs and TicketData.JSON
+    public string classification { get; set; }          // In TicketData.cs and TicketData.JSON
+    public string created_by { get; set; }              // In UserData.cs and UserData.JSON
+    public string laptop_serial_number { get; set; }    // In UserData.cs and UserData.JSON
+
 
     // Calculated data
     public string priority { get; set; }
@@ -47,6 +49,7 @@ public class Ticket
         description = ticketData.description;
         classification = ticketData.classification;
         created_by = userData.name;
+        laptop_serial_number = userData.laptop_serial_number;
         
         // Convert issue type string to enum
         switch (ticketData.issue_type)

@@ -36,8 +36,9 @@ public class Interpreter : MonoBehaviour
             // wmic bios get serialnumber
             if (args.Length == 4 && args[1] == "bios" && args[2] == "get" && args[3] == "serialnumber")
             {
-                response.Add("SerialNumber");
-                response.Add("placeholder_S/N"); // TODO: SerialNumber here
+                response.Add("SerialNumber");                
+                response.Add(PageManager.instance.ticket_selected.laptop_serial_number);
+                Debug.Log("Executed wmic command, returned serial number: " + PageManager.instance.ticket_selected.laptop_serial_number);
             }
             else
             {

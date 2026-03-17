@@ -12,6 +12,7 @@ using UnityEngine;
 public class UserData
 {
     public string name;
+    public string laptop_serial_number;
     public bool is_VIP;
 }
 

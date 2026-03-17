@@ -1,16 +1,54 @@
 {
     "Items": [
         {
-            "name": "Austin Hwang",
-            "is_VIP": true
+            "name": "Cheryl Lim",
+            "is_VIP": true,
+            "laptop_serial_number": "7X9K2F3"
         },
         {
-            "name": "John Tan",
-            "is_VIP": false
+            "name": "Ong Wei Jie",
+            "is_VIP": true,
+            "laptop_serial_number": "C4M8T23"
         },
         {
             "name": "Nelson Tan",
-            "is_VIP": false
+            "is_VIP": true,            
+            "laptop_serial_number": "9F2LQ73"
+        },
+        {
+            "name": "Ethan Tan",
+            "is_VIP": false,            
+            "laptop_serial_number": "B6R3X83"
+        },
+        {
+            "name": "Arjun Kumar",
+            "is_VIP": false,            
+            "laptop_serial_number": "5H7N2K3"
+        },
+        {
+            "name": "Priya Nair",
+            "is_VIP": false,            
+            "laptop_serial_number": "D8P4V93"
+        },
+        {
+            "name": "Daniel Sim",
+            "is_VIP": false,            
+            "laptop_serial_number": "K9W2J53"
+        },
+        {
+            "name": "Jasmine Lee",
+            "is_VIP": false,            
+            "laptop_serial_number": "2M7C8X3"
+        },
+        {
+            "name": "Ryan Chua",
+            "is_VIP": false,            
+            "laptop_serial_number": "F4L9R23"
+        },
+        {
+            "name": "Jonathan Ng",
+            "is_VIP": false,            
+            "laptop_serial_number": "3T6YQ23"
         }
     ]
 }
