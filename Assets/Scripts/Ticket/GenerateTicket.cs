@@ -92,6 +92,9 @@ public class GenerateTicket : MonoBehaviour
         ticketBoxAttributes.ticket = CreateNewTicket(ticketBoxText.GetComponent<TextMeshProUGUI>());
         AudioManager.instance.PlaySFXClip(ticket_generation_sfx, transform, volume);
         Debug.Log($"Ticket generated at in-game time {current_minute_total / 60}:{current_minute_total % 60:00}");
+
+        // Register with TicketManager so it tracks the due time
+        TicketManager.instance.RegisterTicket(ticketBoxAttributes.ticket);
     }
 
     // Update is called once per frame

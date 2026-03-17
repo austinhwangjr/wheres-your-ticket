@@ -31,8 +31,8 @@ public class TicketCompletedHandler : MonoBehaviour
         // Set ticket as completed
         ticket.is_completed = true;
 
-        Debug.Log("Ticket " + ticketID + " completed.");
-        GameObject.Find("LivesManager").GetComponent<LivesManager>().LoseLife(); //testing
+        Debug.Log("Ticket " + ticketID + " completed (wire game).");
+        //GameObject.Find("LivesManager").GetComponent<LivesManager>().LoseLife(); //testing
     }
 
     public void Update()

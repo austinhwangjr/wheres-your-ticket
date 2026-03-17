@@ -14,11 +14,19 @@ using System;
 
 public class LivesManager : MonoBehaviour
 {
+    public static LivesManager instance { get; private set; }
+
     [SerializeField]
     private GameObject lives_text;
     [SerializeField]
     private int maxLives = 3;
     private int currentLives;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -182,12 +182,13 @@ public class UserDesktopManager : MonoBehaviour
         }
 
         PageManager.instance.ticket_selected.is_completed = true;
+        TicketManager.instance.ResolveTicket(PageManager.instance.ticket_selected);
         OnTicketResolved();
     }
 
     private void OnTicketResolved()
     {
-        Debug.Log("Ticket resolved!");
+        Debug.Log("Ticket resolved! (user desktop)");
     }
     /*--------------------------------------------------*/
 
