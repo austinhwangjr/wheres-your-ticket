@@ -7541,6 +7541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f9224a36fdbe364cba12afa0ac1c7e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  game_over_scene: {fileID: 102900000, guid: 39aaeca72b6ed4345aa6e1aa8c60aac1, type: 3}
   lives_text: {fileID: 1159118647}
   maxLives: 5
 --- !u!1 &725882247

@@ -9,6 +9,7 @@
  */
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System;
 
@@ -16,6 +17,8 @@ public class LivesManager : MonoBehaviour
 {
     public static LivesManager instance { get; private set; }
 
+    [SerializeField]
+    private UnityEngine.Object game_over_scene;
     [SerializeField]
     private GameObject lives_text;
     [SerializeField]
@@ -54,8 +57,7 @@ public class LivesManager : MonoBehaviour
         {
             Debug.Log("No lives left! Game Over.");
 
-            // Future game over logic here
-
+            SceneManager.LoadScene(game_over_scene.name);
         }
     }
     

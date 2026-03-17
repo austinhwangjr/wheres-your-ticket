@@ -1,14 +1,14 @@
 {
     "Items": [
         {
-            "title": "Wifi not on",
-            "description": "Help me turn on the wifi thanks",
+            "title": "Wifi is not on",
+            "description": "Help me to turn on the wifi thanks",
             "classification": "IT Issue",
             "issue_type": "WifiNotOn"
         },
         {
-            "title": "Cannot connect to wifi",
-            "description": "Pls help, cannot connect to wifi after getting new laptop",
+            "title": "Wifi on, but cannot connect to internet",
+            "description": "Pls help, cannot connect to internet after getting new laptop. Wifi is already on",
             "classification": "IT Issue",
             "issue_type": "WifiOnNoInternet"
         },
@@ -29,18 +29,6 @@
             "description": "Laggy and slow computer",
             "classification": "IT Issue",
             "issue_type": "ComputerSlow"
-        },
-        {
-            "title": "Cannot print",
-            "description": "Cannot find office printer",
-            "classification": "IT Issue",
-            "issue_type": "ManuallyMapPrinter"
-        },
-        {
-            "title": "Apply for ABC License",
-            "description": "For daily work",
-            "classification": "IT Service",
-            "issue_type": "ApplySoftwareLicense"
         }
     ]
 }
