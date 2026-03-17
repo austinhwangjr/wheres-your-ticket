@@ -7,6 +7,7 @@
  * @date 20 July 2025
  */
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -89,6 +90,11 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
-        Application.Quit();
+        #if UNITY_STANDALONE
+            Application.Quit();
+        #endif
+        #if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+        #endif
     }
 }

@@ -15143,7 +15143,7 @@ Transform:
   m_GameObject: {fileID: 1337153124}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3.97, z: 0}
+  m_LocalPosition: {x: 0, y: -3.97, z: -0.1}
   m_LocalScale: {x: 16.93, y: 0.0683, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19080,6 +19080,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audio_mixer: {fileID: 24100000, guid: 901e9e6952d8649cfafabd51263aa22d, type: 2}
+  master_slider: {fileID: 2074854879}
+  sfx_slider: {fileID: 592467550}
+  bgm_slider: {fileID: 11691398}
 --- !u!4 &1780864134
 Transform:
   m_ObjectHideFlags: 0
@@ -22402,7 +22405,7 @@ Transform:
   m_GameObject: {fileID: 2038769189}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.9441, z: 0}
+  m_LocalPosition: {x: 0, y: 2.9441, z: -0.1}
   m_LocalScale: {x: 12.739358, y: 0.0683, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -6,6 +6,7 @@
  * @author Austin Hwang
  * @date 20 August 2025
  */
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -23,6 +24,10 @@ public class MainMenuButtons : MonoBehaviour, IPointerClickHandler
     private main_menu_button current_button_type;
     [SerializeField]
     private Object scene_to_load;
+    [SerializeField]
+    private GameObject options_menu;
+    [SerializeField]
+    private GameObject button_group;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -35,7 +40,12 @@ public class MainMenuButtons : MonoBehaviour, IPointerClickHandler
                 OpenOptions();
                 break;
             case main_menu_button.Quit:
-                Application.Quit();
+                #if UNITY_STANDALONE
+                    Application.Quit();
+                #endif
+                #if UNITY_EDITOR
+                    EditorApplication.isPlaying = false;
+                #endif
                 break;
         }
     }
@@ -47,6 +57,7 @@ public class MainMenuButtons : MonoBehaviour, IPointerClickHandler
 
     private void OpenOptions()
     {
-        //SceneManager.LoadScene(scene_to_load.name);
+        options_menu.SetActive(true);
+        button_group.SetActive(false);
     }
 }
