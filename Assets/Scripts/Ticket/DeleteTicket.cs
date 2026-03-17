@@ -2,7 +2,7 @@
  * DeleteTicket.cs
  * 
  * This script contains the logic for deleting/removing a ticket.
- * For now, tickets are deleted via button click.
+ * Tickets are deleted via button click (to simulate closing the ticket).
  * 
  * @author Austin Hwang
  * @date 17 September 2025

@@ -2420,7 +2420,7 @@ GameObject:
   - component: {fileID: 215459407}
   - component: {fileID: 215459406}
   m_Layer: 0
-  m_Name: Delete Ticket (Text)
+  m_Name: Close Ticket (Text)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2465,7 +2465,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Delete Ticket
+  m_text: Close Ticket
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11031,7 +11031,7 @@ GameObject:
   - component: {fileID: 1100974712}
   - component: {fileID: 1100974711}
   m_Layer: 0
-  m_Name: Delete Ticket Button
+  m_Name: Close Ticket Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18098,7 +18098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd101a7c92d9d47c6907350be50ade48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delete_ticket_button: {fileID: 1100974709}
+  close_ticket_button: {fileID: 0}
 --- !u!4 &1880002242
 Transform:
   m_ObjectHideFlags: 0

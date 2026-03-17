@@ -11,7 +11,7 @@ using UnityEngine;
 public class TicketCompletedHandler : MonoBehaviour
 {
     [SerializeField]
-    private GameObject delete_ticket_button;
+    private GameObject close_ticket_button;
 
     private void OnEnable()
     {
@@ -44,18 +44,18 @@ public class TicketCompletedHandler : MonoBehaviour
 
         if (PageManager.instance.ticket_selected.is_completed)
         {
-            if (delete_ticket_button.transform.parent.gameObject.activeSelf == true)
+            if (close_ticket_button.transform.parent.gameObject.activeSelf == true)
             {
-                delete_ticket_button.SetActive(true);
+                close_ticket_button.SetActive(true);
             }
             else
             {
-                delete_ticket_button.SetActive(false);
+                close_ticket_button.SetActive(false);
             }
         }
         else
         {
-            delete_ticket_button.SetActive(false);
+            close_ticket_button.SetActive(false);
         }
     }
 }
