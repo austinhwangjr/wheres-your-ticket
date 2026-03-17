@@ -39,7 +39,7 @@ public class LivesManager : MonoBehaviour
     {
         if (lives_text != null)
         {
-            lives_text.GetComponent<TextMeshPro>().text = "Lives: " + currentLives.ToString();
+            lives_text.GetComponent<TextMeshPro>().text = "SLA Violations Left: " + currentLives.ToString();
         }
     }
 

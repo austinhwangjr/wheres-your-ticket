@@ -81,15 +81,51 @@ public class GenerateTicket : MonoBehaviour
     {
         GameObject generated_ticket_box = Instantiate(ticket_box_prefab, all_tickets_list_content.GetComponent<RectTransform>());
         TicketBoxAttributes ticketBoxAttributes = generated_ticket_box.GetComponent<TicketBoxAttributes>();
-        Transform ticketBoxText = generated_ticket_box.transform.GetChild(0);
+        //Transform ticketBoxText = generated_ticket_box.transform.GetChild(0);
 
-        if (ticketBoxAttributes == null || ticketBoxText == null)
+        //if (ticketBoxAttributes == null || ticketBoxText == null)
+        if (ticketBoxAttributes == null)
         {
             Debug.LogError("Missing TicketBoxAttributes or TicketBoxText on generated ticket box.");
             return;
         }
 
-        ticketBoxAttributes.ticket = CreateNewTicket(ticketBoxText.GetComponent<TextMeshProUGUI>());
+        //ticketBoxAttributes.ticket = CreateNewTicket(ticketBoxText.GetComponent<TextMeshProUGUI>());
+        ticketBoxAttributes.ticket = CreateNewTicket();
+        
+        // Populate ticket box text with ticket info
+        Debug.Log("Children count: " + generated_ticket_box.transform.childCount);
+        foreach (Transform child in generated_ticket_box.transform)
+        {
+            switch (child.name)
+            {
+                case "Ticket ID (Text)":
+                    child.GetComponent<TextMeshProUGUI>().SetText(ticketBoxAttributes.ticket.id.ToString());
+                    break;
+                case "Ticket Title (Text)":
+                    child.GetComponent<TextMeshProUGUI>().SetText(ticketBoxAttributes.ticket.title);
+                    break;
+                case "Ticket Classification (Text)":
+                    child.GetComponent<TextMeshProUGUI>().SetText(ticketBoxAttributes.ticket.classification);
+                    break;
+                case "Ticket Created By (Text)":
+                    child.GetComponent<TextMeshProUGUI>().SetText(ticketBoxAttributes.ticket.created_by);
+                    break;
+                case "Ticket Priority (Text)":
+                    child.GetComponent<TextMeshProUGUI>().SetText(ticketBoxAttributes.ticket.priority);
+                    break;
+                case "Ticket Due By (Text)":
+                    int hours24h = ticketBoxAttributes.ticket.due_by / 60;
+                    int minutes = ticketBoxAttributes.ticket.due_by % 60;
+                    string amPmString = hours24h >= 12 ? "pm" : "am";
+                    int hours12 = hours24h % 12 == 0 ? 12 : hours24h % 12;
+                    child.GetComponent<TextMeshProUGUI>().SetText($"{hours12}:{minutes:00} {amPmString}");
+                    break;
+            }
+
+        }
+
+        // Play SFX
         AudioManager.instance.PlaySFXClip(ticket_generation_sfx, transform, volume);
         Debug.Log($"Ticket generated at in-game time {current_minute_total / 60}:{current_minute_total % 60:00}");
 
@@ -132,23 +168,31 @@ public class GenerateTicket : MonoBehaviour
         }
     }*/
 
-    private Ticket CreateNewTicket(TextMeshProUGUI textMeshPro)
+    // private Ticket CreateNewTicket(TextMeshProUGUI textMeshPro)
+    // {
+    //     Ticket ticket = Ticket.GenerateRandomTicket();
+    //     ticket.due_by = ticket.minutes_for_completion + current_minute_total;
+
+    //     if (textMeshPro != null)
+    //     {
+    //         // Display is done in main ticket page
+    //         textMeshPro.GetComponent<TextMeshProUGUI>().SetText(
+    //             $"Ticket:\n" +
+    //             $"Title: {ticket.title}, " +
+    //             $"Classification: {ticket.classification}, " +
+    //             $"Created By: {ticket.created_by}, " +
+    //             $"Priority: {ticket.priority}, " +
+    //             $"Due By: {ticket.due_by / 60}:{ticket.due_by % 60:00}"
+    //         );
+    //     }
+
+    //     return ticket;
+    // }
+
+    private Ticket CreateNewTicket()
     {
         Ticket ticket = Ticket.GenerateRandomTicket();
         ticket.due_by = ticket.minutes_for_completion + current_minute_total;
-
-        if (textMeshPro != null)
-        {
-            // Display is done in main ticket page
-            textMeshPro.GetComponent<TextMeshProUGUI>().SetText(
-                $"Ticket:\n" +
-                $"Title: {ticket.title}, " +
-                $"Classification: {ticket.classification}, " +
-                $"Created By: {ticket.created_by}, " +
-                $"Priority: {ticket.priority}, " +
-                $"Due By: {ticket.due_by / 60}:{ticket.due_by % 60:00}"
-            );
-        }
 
         return ticket;
     }
