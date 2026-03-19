@@ -98,13 +98,13 @@ public class Ticket
         switch (priority)
         {
             case "P1":
-                minutes_for_completion = 30;
+                minutes_for_completion = 45;
                 break;
             case "P2":
-                minutes_for_completion = 60;
+                minutes_for_completion = 90;
                 break;
             case "P3":
-                minutes_for_completion = 120;
+                minutes_for_completion = 180;
                 break;
         }
 
